@@ -1,0 +1,79 @@
+package gamepage.page.Users;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
+
+@Repository
+public class UserRepository {
+  private List<User> users;
+  private final JdbcClient jdbcClient;
+
+  UserRepository(JdbcClient jdbcClient) {
+    this.jdbcClient = jdbcClient;
+  }
+
+  // Insert querys
+  public int createUser(User user) {
+    String query = "INSERT INTO USER" + "( name, email)"
+        + " VALUES(?, ?);";
+    var updated = jdbcClient.sql(query)
+        .params(List.of(user.getName(),user.getEmail())).update();
+    Assert.state(updated == 1,
+        "Failed to create User: " + user.getName());
+    return updated;
+  }
+
+  // Update querys
+  public void updateUser(User user, int id) {
+    if (user.getId() == id) {
+      Optional<User> existingUser = getUserById(id);
+      if (existingUser.isPresent()) {
+        String query = "UPDATE USER SET name = ?, birthDate = ? , location = ? WHERE id = ?;";
+        var updated = jdbcClient.sql(query)
+            .params(List.of(user.getName(),user.getEmail(), user.getId()))
+            .update();
+        Assert.state(updated == 1,
+            "Failed to Update User: " + user.getName());
+      }
+    }
+  }
+
+  // Delete querys
+  public void deleteUser(int id) {
+    Optional<User> existingUser = getUserById(id);
+    if (existingUser.isPresent()) {
+      String query = "DELETE FROM USER WHERE id = :id;";
+      var updated = jdbcClient.sql(query).param("id", id).update();
+      Assert.state(updated == 1,
+          "Failed to Delete Run: " + existingUser.get().getName());
+    }
+  }
+
+  // Select querys
+  List<User> getAllUsers() {
+    String query = "SELECT * FROM USER;";
+    users = jdbcClient.sql(query).query(User.class).list();
+    return users;
+  }
+
+  Optional<User> getUserById(int id) {
+    String query = "SELECT * FROM USER WHERE id = :id;";
+    Optional<User> runner = jdbcClient.sql(query).param("id", id)
+        .query(User.class).optional();
+    return runner;
+  }
+
+  Optional<User> getUserNameById(int id) {
+    String query = "SELECT * FROM USER r WHERE id = :id;";
+    Optional<User> runner = jdbcClient.sql(query).param("id", id)
+        .query(User.class).optional();
+    if (runner.isPresent()) {
+      return runner;
+    }
+    return null;
+  }
+}
