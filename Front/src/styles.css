@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+:root{
+  --mainBackgoundColor: rgb(251, 251, 237);
+  --contentBackgroundColor: rgb(255, 255, 247);
+  --mainColor: rgb(255, 255, 247);
+  --secondaryColor: rgb(33, 158, 33);
+  --hightLightColor: rgb(0,0,0);
+  --tableColor:rgba(33, 158, 33, 0.186);
+  --tableHightLightColor: rgba(33, 158, 33, 0.549);
+}
+html, *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+html{
+  background-color: rgb(251, 251, 237);
+}
+/*Main Content Styles*/
+div.mainContent{
+  background-color: var(--contentBackgroundColor);
+  padding: 1rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+}
+div.mainContent h2{
+  font-size: 2rem;
+}
+div.mainContent h3 {
+  font-size: 1.5rem;
+}
+
+div.mainContent h4 {
+  font-size: 1.2rem;
+}
+/*Search Bar*/
+div.searchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+div.searchBar input.bar{
+  flex: 5;
+  border-radius: 1rem;
+}
+div.searchBar i{
+  margin: 0rem 0.25rem;
+}
+/*headers*/
+div.header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+div.header #deleteIcon{
+  background-color: var(--secondaryColor);
+  color: var(--contentBackgroundColor);
+  border: solid black 0.1rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+div.header #deleteIcon:hover{
+  background-color: var(--contentBackgroundColor);
+  color: red;
+  cursor: pointer;
+  border-color: var(--secondaryColor);
+}
+/*Icons Styles*/
+i.button{
+  background-color: var(--secondaryColor);
+  color: var(--contentBackgroundColor);
+  border: solid black 0.1rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+i.button:hover{
+  background-color: var(--contentBackgroundColor);
+  color: var(--secondaryColor);
+  cursor: pointer;
+  border-color: var(--secondaryColor);
+}
+#deleteIcon:hover{
+  color: red;
+  background-color: black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+i#veggieIcon{
+  color: rgb(151, 224, 41);
+  background-color: var(--contentBackgroundColor);
+  border: dashed rgb(151, 224, 41) 0.1rem;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  cursor: auto;
+}
+i#veganIcon:hover i#veggieIcon, i#veganIcon{
+  background-color: var(--contentBackgroundColor);
+  color: var(--secondaryColor);
+  border: solid var(--secondaryColor) 0.1rem;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  cursor: auto;
+}
+
+/*tables*/
+table {
+  margin: 1rem 0;
+  border: 0.1rem solid var(--secondaryColor);
+  width: 100%;
+}
+tr#header{
+  background-color: var(--secondaryColor);
+  font-weight: bold;
+}
+table tr:nth-child(even) {
+  background-color: var(--tableColor);
+}
+/*TexAreas*/
+textarea{
+  width: 100%;
+  border-radius: 0.25rem;
+  border: solid 0.025rem var(--secondaryColor);
+}
+/*Mobile*/
+@media only screen and (max-width: 1020px){
+  html, *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  div.mainContent{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+  }
+}
+

@@ -18,7 +18,7 @@ public class UserRepository {
 
   // Insert querys
   public int createUser(User user) {
-    String query = "INSERT INTO USER" + "( name, email)"
+    String query = "INSERT INTO USERS" + "( name, email)"
         + " VALUES(?, ?);";
     var updated = jdbcClient.sql(query)
         .params(List.of(user.getName(),user.getEmail())).update();
@@ -32,7 +32,7 @@ public class UserRepository {
     if (user.getId() == id) {
       Optional<User> existingUser = getUserById(id);
       if (existingUser.isPresent()) {
-        String query = "UPDATE USER SET name = ?, birthDate = ? , location = ? WHERE id = ?;";
+        String query = "UPDATE USERS SET name = ?, email = ? WHERE id = ?;";
         var updated = jdbcClient.sql(query)
             .params(List.of(user.getName(),user.getEmail(), user.getId()))
             .update();
@@ -46,7 +46,11 @@ public class UserRepository {
   public void deleteUser(int id) {
     Optional<User> existingUser = getUserById(id);
     if (existingUser.isPresent()) {
-      String query = "DELETE FROM USER WHERE id = :id;";
+      String queryDependencies = "DELETE FROM SCORE WHERE username = :id;";
+      var deleteDependencies = jdbcClient.sql(queryDependencies).param("id", id).update();
+      Assert.state(deleteDependencies == 1,
+          "Failed to Delete Run: " + existingUser.get().getName());
+      String query = "DELETE FROM USERS WHERE id = :id;";
       var updated = jdbcClient.sql(query).param("id", id).update();
       Assert.state(updated == 1,
           "Failed to Delete Run: " + existingUser.get().getName());
@@ -55,24 +59,24 @@ public class UserRepository {
 
   // Select querys
   List<User> getAllUsers() {
-    String query = "SELECT * FROM USER;";
+    String query = "SELECT * FROM USERS;";
     users = jdbcClient.sql(query).query(User.class).list();
     return users;
   }
 
   Optional<User> getUserById(int id) {
-    String query = "SELECT * FROM USER WHERE id = :id;";
-    Optional<User> runner = jdbcClient.sql(query).param("id", id)
+    String query = "SELECT * FROM USERS WHERE id = :id;";
+    Optional<User> user = jdbcClient.sql(query).param("id", id)
         .query(User.class).optional();
-    return runner;
+    return user;
   }
 
   Optional<User> getUserNameById(int id) {
-    String query = "SELECT * FROM USER r WHERE id = :id;";
-    Optional<User> runner = jdbcClient.sql(query).param("id", id)
+    String query = "SELECT * FROM USERS r WHERE id = :id;";
+    Optional<User> user = jdbcClient.sql(query).param("id", id)
         .query(User.class).optional();
-    if (runner.isPresent()) {
-      return runner;
+    if (user.isPresent()) {
+      return user;
     }
     return null;
   }

@@ -1,0 +1,99 @@
+/*Nav Styles*/
+nav.desktop {
+  background-color: rgb(41, 41, 41);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
+nav.desktop h1.title {
+  color: var(--secondaryColor);
+  font-size: 2rem;
+  padding-left: 1rem;
+  flex: 2;
+}
+
+nav.desktop ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
+
+nav.desktop ul li {
+  list-style: none;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+nav.desktop ul li:hover {
+  background-color: var(--secondaryColor);
+  cursor: pointer;
+}
+
+/*End Nav Styles*/
+/*Footer Styles*/
+/*End FooterStyles*/
+/*Mobile*/
+
+@media only screen and (max-width: 1020px) {
+
+  /*Nav Styles*/
+  nav.mobile {
+    background-color: rgb(41, 41, 41);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+    min-height: 5rem;
+    position: sticky;
+    top: 0;
+  }
+
+  nav.mobile h1.title {
+    color: var(--secondaryColor);
+    font-size: 2rem;
+  }
+
+  nav.mobile ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    position: absolute;
+    background-color: rgba(41, 41, 41, 0.855);
+    padding-bottom: 100%;
+  }
+
+  nav.mobile ul li {
+    width: 100%;
+    list-style: none;
+    padding: 2rem;
+    font-size: 1.5rem;
+    color: white;
+  }
+  div.sideMenuRight{
+    margin-right: 0.5rem;
+  }
+  div.sideMenu{
+    margin-left: 0.5rem;
+  }
+   nav.mobile ul.right {
+    right: 0;
+  }
+  nav.mobile ul.left{
+    left: 0;
+  }
+
+  nav.mobile ul li:hover {
+    background-color: var(--secondaryColor);
+    cursor: pointer;
+  }
+}

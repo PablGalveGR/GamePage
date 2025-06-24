@@ -1,4 +1,4 @@
-package gamepage.page.Users;
+package gamepage.page.Games;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,51 +17,51 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 @RestController
-@RequestMapping("/api/users") // General path that invokes this controller
+@RequestMapping("/api/games") // General path that invokes this controller
 @CrossOrigin
-public class UserController {//Never return the password to the Client
-  private final UserRepository userRepository;
- public UserController (UserRepository userRepository){
-  this.userRepository = userRepository;
+public class GameController {//Never return the password to the Client
+  private final GameRepository gameRepository;
+ public GameController (GameRepository gameRepository){
+  this.gameRepository = gameRepository;
  }
  /*private static final Logger log = LoggerFactory
       .getLogger(Application.class);
 */
  //Select
 @GetMapping("")
-  public List<User> findAllUsers() {
-    List<User> users = userRepository.getAllUsers();
-    System.out.println(users.toString());
-    return users;
+  public List<Game> findAllGames() {
+    List<Game> games = gameRepository.getAllGames();
+    System.out.println(games.toString());
+    return games;
   }
 // General path plus an element to pass to the controller
   @GetMapping("{id}") 
-  User findOneUser(@PathVariable int id) {
-    Optional<User> opUser = userRepository.getUserById(id);
-    if (opUser.isEmpty()) {
+  Game findOneGame(@PathVariable int id) {
+    Optional<Game> opGame = gameRepository.getGameById(id);
+    if (opGame.isEmpty()) {
       //throw new RunNotFoundException();
     }
-    return opUser.get();
+    return opGame.get();
   }
  // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void createRun(@Valid @RequestBody User user) {
-    userRepository.createUser(user);
+  void createRun(@Valid @RequestBody Game game) {
+    gameRepository.createGame(game);
   }
 
   // Update
   @ResponseStatus(HttpStatus.ACCEPTED)
   @PutMapping("update/{id}")
-  void updateRun(@Valid @RequestBody User user, @PathVariable int id) {
+  void updateRun(@Valid @RequestBody Game game, @PathVariable int id) {
     //log.info(user.toString());
-    userRepository.updateUser(user, id);
+    gameRepository.updateGame(game, id);
   }
 
   // Delete
   @ResponseStatus(HttpStatus.ACCEPTED)
   @DeleteMapping("delete/{id}")
   void deleteRun(@Valid @PathVariable int id) {
-    userRepository.deleteUser(id);
+    gameRepository.deleteGame(id);
   }
 }

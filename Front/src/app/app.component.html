@@ -1,0 +1,33 @@
+<nav class="desktop"><!--*ngIf= desktop-->
+  <h1 class="title" (click) = "goTo('')">{{title}}</h1>
+  <ul>
+    <li>Browse Games</li><!--(click) = "goTo('')"-->
+    <li>Upload Game</li>
+    <li>Community</li>
+    <li>Sign up</li>
+    <li>Login</li>
+  </ul>
+</nav>
+<!--
+<nav class="mobile" *ngIf = "!desktop">
+  <div class="sideMenu">
+    <i class="fa-solid fa-bars button" (click)="showHide()"></i>
+    <ul class="left" *ngIf="!hide">
+      <li (click)="goTo('')">Home</li>
+      <li (click)="goTo('/recipes')">Recipes</li>
+      <li (click)="goTo('/ingredients')">Ingredients</li>
+    </ul>
+  </div>
+  <h1 class="title">{{title}}</h1>
+  <div class="sideMenuRight">
+    <i class="fa-solid fa-user button" (click)="showHideUserMenu()"></i>
+    <ul class="right" *ngIf="!hideUserMenu">
+      <li>Sing Up</li>
+      <li>Login</li>
+    </ul>
+  </div>
+
+</nav>
+-->
+
+<router-outlet></router-outlet>

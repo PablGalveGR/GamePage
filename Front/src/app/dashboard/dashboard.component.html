@@ -1,0 +1,23 @@
+<div class="mainContent">
+  <div class="header">
+    <h2 class="ListTitle">Games</h2>
+    <!--<i class="fas fa-plus-square button" id ="addIcon" (click)=goToAdd()> Add</i>-->
+  </div>
+  <div class="searchBar">
+    <!--<input class="bar" type="text" (keyup.enter)="filterBy(filter.value)" #filter>
+    <i class="fas fa-search button" (click)="filterBy(filter.value)"></i>
+    <i class="fas fa-eraser button" (click)="clearFilter(filter)"></i>-->
+  </div>
+  <table class="games">
+    <tr id="header">
+      <td>ID</td>
+      <td>Name</td>
+      <td>Portrait</td>
+    </tr>
+    <tr *ngFor=" let game of games" class="game" (click)="goToDetail(game.id)">
+      <td>{{game.id}}</td>
+      <td>{{game.name}}</td>
+      <td>{{game.portrait}}</td>
+    </tr>
+  </table>
+</div>
