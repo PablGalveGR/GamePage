@@ -1,4 +1,21 @@
-<div class="mainContent">
-  <div class="header" *ngIf="game">
+<div class="mainContent" *ngIf="game">
+  <div class="header">
     <h2>{{game.name}}</h2>
+  </div>
+  <div class="body">
+    <p>{{game.description}}</p>
+    <img src="{{game.portrait}}">
+    <table class="ScoreBoard">
+      <tr>
+        <td>Position</td>
+        <td>Username</td>
+        <td>Score</td>
+      </tr>
+      <tr *ngFor="let score of scores; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{getUsername(score.username)}}</td>
+        <td>{{score.score}}</td>
+      </tr>
+    </table>
+  </div>
 </div>

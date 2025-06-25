@@ -1,21 +1,24 @@
 import { Game } from "./Game";
 export const GAMES : Game[] = [
   {
-    id: 1,
+    id: 0,
     name: "AAAAAAAAA",
     path: "",
-    portrait: ""
+    description: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    portrait: "../../assets/games/portaits/game1.webp"
+  },
+  {
+    id: 1,
+    name: "BBBBBBBBB",
+    path: "",
+    description: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    portrait: "../../assets/games/portaits/game2.webp"
   },
   {
     id: 2,
-    name: "BBBBBBBBB",
-    path: "",
-    portrait: ""
-  },
-  {
-    id: 3,
     name: "CCCCCCCCC",
     path: "",
-    portrait: ""
+    description: "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    portrait: "../../assets/games/portaits/game3.webp"
   }
 ]

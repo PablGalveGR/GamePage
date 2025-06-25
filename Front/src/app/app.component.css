@@ -35,6 +35,11 @@ nav.desktop ul li:hover {
   background-color: var(--secondaryColor);
   cursor: pointer;
 }
+nav.desktop h1:hover{
+  color:black;
+  background-color: var(--secondaryColor);
+  cursor: pointer;
+}
 
 /*End Nav Styles*/
 /*Footer Styles*/

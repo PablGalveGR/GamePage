@@ -8,16 +8,19 @@
     <i class="fas fa-search button" (click)="filterBy(filter.value)"></i>
     <i class="fas fa-eraser button" (click)="clearFilter(filter)"></i>-->
   </div>
-  <table class="games">
-    <tr id="header">
-      <td>ID</td>
-      <td>Name</td>
-      <td>Portrait</td>
-    </tr>
-    <tr *ngFor=" let game of games" class="game" (click)="goToDetail(game.id)">
-      <td>{{game.id}}</td>
-      <td>{{game.name}}</td>
-      <td>{{game.portrait}}</td>
-    </tr>
-  </table>
+  <div class="boxView"> <!--*ngIf="boxView"-->
+    <div class="recipeContainer" *ngFor=" let game of games" (click)="goToDetail(game.id)">
+      <div class="boxHeader">
+        <h2 class="recipeName">{{game.name}}</h2>
+        <img src="{{game.portrait}}">
+      </div>
+      <div class="bottom">
+        <p>{{game.description}}</p>
+        <p class="difficulty"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+    
+
+  </div>
 </div>
