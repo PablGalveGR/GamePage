@@ -5,7 +5,7 @@ export const GAMES : Game[] = [
     name: "AAAAAAAAA",
     path: "",
     description: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    portrait: "../../assets/games/portaits/game1.webp"
+    portrait: "../../assets/games/portaits/Farmcalipsis.webp"
   },
   {
     id: 1,

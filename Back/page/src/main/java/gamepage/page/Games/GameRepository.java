@@ -18,8 +18,8 @@ public class GameRepository {
 
   // Insert querys
   public int createGame(Game game) {
-    String query = "INSERT INTO Game " + "( name, path, portrait)"
-        + " VALUES( ?, ?, ? );";
+    String query = "INSERT INTO Game " + "( name, path, description, portrait)"
+        + " VALUES( ?, ?, ?, ?);";
     var updated = jdbcClient.sql(query)
         .params(List.of(game.getName(),game.getPath(), game.getPortrait())).update();
     Assert.state(updated == 1,
@@ -32,7 +32,7 @@ public class GameRepository {
     if (game.getId() == id) {
       Optional<Game> existingGame = getGameById(id);
       if (existingGame.isPresent()) {
-        String query = "UPDATE Game SET name = ? , path = ?, portrait = ? WHERE id = ?;";
+        String query = "UPDATE Game SET name = ? , path = ?, description = ?, portrait = ? WHERE id = ?;";
         var updated = jdbcClient.sql(query)
             .params(List.of(game.getName(),game.getPath(),game.getPortrait(), game.getId() ))
             .update();

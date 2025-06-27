@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 @Repository
+
 public class UserRepository {
   private List<User> users;
   private final JdbcClient jdbcClient;
@@ -58,6 +59,7 @@ public class UserRepository {
   }
 
   // Select querys
+  
   List<User> getAllUsers() {
     String query = "SELECT * FROM USERS;";
     users = jdbcClient.sql(query).query(User.class).list();

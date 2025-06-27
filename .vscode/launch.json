@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PageApplication<page>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "gamepage.page.PageApplication",
+      "projectName": "page",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
