@@ -17,7 +17,7 @@ export class UserComponent {
     this.getAllUsers();
   }
   getAllUsers() {
-    this.userService.getUsernamesFromBack().subscribe(users_ => this.users = users_);
+    this.userService.getUsernames().subscribe(users_ => this.users = users_);
     console.log("All users done");
   }
 }

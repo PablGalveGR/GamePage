@@ -31,6 +31,9 @@ export class GameService {
     return this.scoreService.getScoresByGame(id);
   }
   getUser(id: number): Observable<User> {
-    return this.userService.getUsername(id);
+    return this.userService.getUser(id);
+  }
+  getUserName(id : number) : Observable<User>{
+    return this.userService.getName(id);
   }
 }

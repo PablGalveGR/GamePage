@@ -1,26 +1,22 @@
 <div class="mainContent">
-  <div class="header">
-    <h2 class="ListTitle">Games</h2>
+  <section class="header">
+    <h2 class="listTitle">Games</h2>
     <!--<i class="fas fa-plus-square button" id ="addIcon" (click)=goToAdd()> Add</i>-->
-  </div>
-  <div class="searchBar">
+  </section>
+  <section class="searchBar">
     <!--<input class="bar" type="text" (keyup.enter)="filterBy(filter.value)" #filter>
     <i class="fas fa-search button" (click)="filterBy(filter.value)"></i>
     <i class="fas fa-eraser button" (click)="clearFilter(filter)"></i>-->
-  </div>
+  </section>
   <div class="boxView"> <!--*ngIf="boxView"-->
-    <div class="recipeContainer" *ngFor=" let game of games" (click)="goToDetail(game.id)">
-      <div class="boxHeader">
-        <h2 class="recipeName">{{game.name}}</h2>
+    <div class="gameContainer" *ngFor=" let game of games" (click)="goToDetail(game.id)">
+      <section class="boxHeader">
         <img src="{{game.portrait}}">
-      </div>
-      <div class="bottom">
+        <h2 class="gameName">{{game.name}}</h2>
+      </section>
+      <section class="body">
         <p>{{game.description}}</p>
-        <p class="difficulty"></p>
-        <p class="price"></p>
-      </div>
+      </section>
     </div>
-    
-
   </div>
 </div>

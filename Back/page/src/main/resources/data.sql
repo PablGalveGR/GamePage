@@ -1,6 +1,7 @@
 INSERT INTO USERS VALUES
 (0,'PacoMan', 'AAAAAAAA@fbgr.com'),
-(1,'FranciscoBB', 'BBBBBBBBBBBB@fbgr.com');
+(1,'FranciscoBB', 'BBBBBBBBBBBB@fbgr.com'),
+(2,'CagasAwa', 'CCCCCCCCCCCC@fbgr.com');
 INSERT INTO GAME VALUES
 (0,'AWACALDO', '/game/AWACALDO','test1test1test1test1test1test1test1 test1test1test1 test1 test1test1test1test1','../../assets/games/portaits/Awacaldo.png'),
 (1,'Chistorras asesinas', '/game/Chistorras','test2test2test2test2 test2test2 test2test2test2test2 test2test2','../../assets/games/portaits/Chistorras.webp'),  
@@ -13,4 +14,7 @@ INSERT INTO SCORE VALUES
 (4,1,0, 500),
 (5,2,0, 487),
 (6,2,0, 600),
-(7,2,1, 800);   
+(7,2,1, 800),
+(8,0,2, 200),
+(9,1,2, 605),  
+(10,2,2, 450);

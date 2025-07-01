@@ -1,11 +1,11 @@
 CREATE TABLE USERS(
    id int auto_increment PRIMARY KEY,
-   name varchar(30),
-   email varchar(150)
+   name varchar(30) NOT NULL,
+   passwd varchar(150)
 );
 CREATE TABLE GAME(
    id int auto_increment PRIMARY KEY,
-   name varchar(30),
+   name varchar(30) NOT NUll, 
    path varchar(150) unique,
    description varchar(1500),
    portrait varchar(50) unique

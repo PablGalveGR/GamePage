@@ -3,11 +3,11 @@ export const USERS : User[] = [
   {
     id: 0,
     name: "PacoBoio",
-    email: ""
+    passwd: ""
   },
   {
     id: 1,
     name: "FranciscoBB",
-    email: ""
+    passwd: ""
   }
 ]

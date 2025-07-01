@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -13,14 +14,15 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private  String name;
-  private  String email;
-  public User(){
-  }
+  private String paswd;
+  
 
-  public User(long id, String name, String email) {
+  public User(long id, String name, String paswd) {
     this.id = id;
     this.name = name;
-    this.email = email;
+    this.paswd = paswd;
+  }
+  public User(){
   }
 
   // standard constructors / setters / getters / toString
@@ -35,18 +37,28 @@ public class User {
   public String getName() {
     return this.name;
   }
-
-  public String getEmail() {
-    return this.email;
+  public void setName(String name) {
+    this.name = name;
   }
+
+  public String getPaswd() {
+    return this.paswd;
+  }
+
+  public void setPaswd(String paswd) {
+    this.paswd = paswd;
+  }
+
 
   @Override
   public String toString() {
     return "{" +
-        " id='" + getId() + "'" +
-        ", name='" + getName() + "'" +
-        ", email='" + getEmail() + "'" +
-        "}";
+      " id='" + getId() + "'" +
+      ", name='" + getName() + "'" +
+      ", paswd='" + getPaswd() + "'" +
+      "}";
   }
+
+  
 
 }

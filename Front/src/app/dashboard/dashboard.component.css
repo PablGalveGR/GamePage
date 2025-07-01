@@ -1,0 +1,46 @@
+section.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.boxView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+div.boxView div.gameContainer {
+  background-color: var(--contentBackgroundColor);
+  border: 0.1rem, solid, var(--secondaryColor);
+  flex: 25%;
+  flex-grow: 1;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  max-width: max-content;
+  max-height: min-content;
+  overflow: hidden;
+  
+}
+div.boxView div.gameContainer:hover{
+  border: 0.1rem solid var(--hightLightColor);
+  cursor: pointer;
+}
+
+section.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section.header img{
+
+}
+
+section.body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

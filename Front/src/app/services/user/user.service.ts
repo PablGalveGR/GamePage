@@ -10,14 +10,18 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
-  users = USERS;
+  //users = USERS;
   getUsernames(): Observable<User[]> {
+    return this.httpClient.get<User[]>('http://localhost:8080'+'/api/users');
+  }
+  /*getUsernames(): Observable<User[]> {
     return of(this.users);
+  }*/
+  getUser(id: number): Observable<User> {
+    return this.httpClient.get<User>('http://localhost:8080'+'/api/users/'+id);
   }
-  getUsername(id: number): Observable<User> {
-    return of(this.users.find(user => user.id == id)!);
+  getName(id: number) :Observable<User>{
+     return this.httpClient.get<User>('http://localhost:8080'+'/api/users/'+id);
   }
-  getUsernamesFromBack(): Observable<User[]> {
-    return this.httpClient.get<User[]>('http://localhost:8080' + +'/api/users');
-  }
+  
 }
