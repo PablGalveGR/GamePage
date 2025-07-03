@@ -6,41 +6,42 @@ section.header {
 
 div.boxView {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
 div.boxView div.gameContainer {
-  background-color: var(--contentBackgroundColor);
+  background-color: var(--mainColor);
   border: 0.1rem, solid, var(--secondaryColor);
-  flex: 25%;
+  flex: 20%;
   flex-grow: 1;
   border-radius: 0.5rem;
-  margin: 1rem;
-  padding: 1rem;
-  max-width: max-content;
-  max-height: min-content;
-  overflow: hidden;
-  
+  margin: 0.2rem;
+  padding: 0.1rem;
+  max-width: 19%;
+  max-height: 19%;
+
 }
-div.boxView div.gameContainer:hover{
+
+div.boxView div.gameContainer:hover {
   border: 0.1rem solid var(--hightLightColor);
   cursor: pointer;
 }
 
-section.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-section.header img{
-
+div.boxView div.gameContainer h2.gameName {
+  font-size: 1.5rem;
 }
 
-section.body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+div.boxView div.gameContainer section.boxHeader img {
+  max-width: 100%;
+  height: auto;
+}
+
+div.boxView div.gameContainer section.boxBody {
+  height: 4rem;
+}
+
+div.boxView div.gameContainer section.boxBody p {
+  text-overflow: ellipsis;
 }

@@ -1,27 +1,27 @@
-<div class="mainContent" *ngIf="game">
-  <div class="header">
-    <h2>{{game.name}}</h2>
-  </div>
-  <div class="body">
-    <p>{{game.description}}</p>
-    <img src="{{game.portrait}}">
-    <div class="scoreBoard">
+<div class="gameContainer" *ngIf="game">
+  <div class="game">
+    <div class="gameHeader">
+      <h2>{{game.name}}</h2>
+    </div>
+    <div class="gameBody">
+      <img src="{{game.portrait}}">
+      <p>{{game.description}}</p>
+    </div>
+    <div class="scoreBoardContainer">
       <h2>Scores</h2>
       @defer{
-      <div class="scoreBoard">
-        <table class="ScoreBoard">
-          <tr>
-            <td>Position</td>
-            <td>Username</td>
-            <td>Score</td>
-          </tr>
-          <tr *ngFor="let score of scores | async; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{getName(score.username)}}</td>
-            <td>{{score.score}}</td>
-          </tr>
-        </table>
-      </div>
+      <table class="scoreBoard">
+        <tr>
+          <td>Position</td>
+          <td>Username</td>
+          <td>Score</td>
+        </tr>
+        <tr *ngFor="let score of scores | async; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{getName(score.username)}}</td>
+          <td>{{score.score}}</td>
+        </tr>
+      </table>
       }
     </div>
   </div>

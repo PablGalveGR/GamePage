@@ -1,0 +1,39 @@
+div.gameContainer {
+  background-color: chartreuse;
+}
+
+div.gameHeader h2 {
+  text-align: center;
+  font-size: 5rem;
+}
+
+div.gameContainer p {
+  font-size: 2rem;
+
+}
+
+div.gameContainer img {
+  width: 40%;
+  height: auto;
+}
+div.scoreBoardContainer{
+  background-color: brown;
+}
+div.scoreBoardContainer h2{
+  font-size: 5rem;
+}
+table.scoreBoard {
+  margin: 1rem 0;
+  border: 0.1rem solid var(--secondaryColor);
+  width: 100%;
+}
+table.scoreBoard tr#header{
+  background-color: var(--secondaryColor);
+  font-weight: bold;
+}
+table.scoreBoard tr:nth-child(even) {
+  background-color: var(--tableColor);
+}
+table.scoreBoard td{
+  font-size: 2rem;
+}
