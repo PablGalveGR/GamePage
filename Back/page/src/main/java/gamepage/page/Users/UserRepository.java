@@ -47,7 +47,7 @@ public class UserRepository {
   public void deleteUser(int id) {
     Optional<User> existingUser = getUserById(id);
     if (existingUser.isPresent()) {
-      String queryDependencies = "DELETE FROM SCORE WHERE username = :id;";
+      String queryDependencies = "DELETE FROM SCORE WHERE user = :id;";
       var deleteDependencies = jdbcClient.sql(queryDependencies).param("id", id).update();
       Assert.state(deleteDependencies == 1,
           "Failed to Delete Run: " + existingUser.get().getName());

@@ -1,11 +1,13 @@
 <div class="gameContainer" *ngIf="game">
-  <div class="game">
-    <div class="gameHeader">
+  <div class="gameHeader">
       <h2>{{game.name}}</h2>
-    </div>
-    <div class="gameBody">
       <img src="{{game.portrait}}">
-      <p>{{game.description}}</p>
+    </div>
+  <div class="game">
+    <div class="gameBody">
+      <section class="gameDesc">
+        <p>{{game.description}}</p>
+      </section>
     </div>
     <div class="scoreBoardContainer">
       <h2>Scores</h2>

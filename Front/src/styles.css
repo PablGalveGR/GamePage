@@ -19,6 +19,10 @@ html, *{
 html{
   background-color: var(--mainColor);
 }
+body{
+  height: 100%;
+}
+
 /*Main Content Styles*/
 div.mainContent{
   background-color: var(--contentBackgroundColor);
@@ -26,6 +30,7 @@ div.mainContent{
   margin-left: 10%;
   margin-right: 0%;
   margin-top: 1%;
+  height: 100%;
 }
 div.mainContent h2{
   font-size: 2rem;
