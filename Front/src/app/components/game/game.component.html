@@ -2,11 +2,23 @@
   <div class="gameHeader">
       <h2>{{game.name}}</h2>
       <img src="{{game.portrait}}">
+      <button class="downloadGame">Download</button>
     </div>
   <div class="game">
     <div class="gameBody">
+      <h2>Summary</h2>
       <section class="gameDesc">
         <p>{{game.description}}</p>
+      </section>
+      <section class="commentsContainer">
+        <h2>Comments</h2>
+        <ul>
+          <li class="comment" *ngFor="let comment of comments | async">
+            <h3 class="commentUser">{{getName(comment.username)}} <span>{{comment.date}}</span></h3>
+            
+            <p class="commentBody">{{comment.comment}}</p>
+          </li>
+        </ul>
       </section>
     </div>
     <div class="scoreBoardContainer">

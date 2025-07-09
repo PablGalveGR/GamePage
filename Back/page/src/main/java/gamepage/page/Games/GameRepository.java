@@ -49,11 +49,11 @@ public class GameRepository {
       String queryDependencies = "DELETE FROM SCORE WHERE game = :id;";
       var deleteDependencies = jdbcClient.sql(queryDependencies).param("id", id).update();
       Assert.state(deleteDependencies == 1,
-          "Failed to Delete Run: " + existingGame.get().getName());
+          "Failed to Delete game: " + existingGame.get().getName());
       String query = "DELETE FROM Game WHERE id = :id;";
       var updated = jdbcClient.sql(query).param("id", id).update();
       Assert.state(updated == 1,
-          "Failed to Delete Run: " + existingGame.get().getName());
+          "Failed to Delete game: " + existingGame.get().getName());
     }
   }
 

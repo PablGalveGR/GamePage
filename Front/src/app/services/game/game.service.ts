@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Game } from '../../components/game/Game';
-import { GAMES } from '../../components/game/games';
+//import { GAMES } from '../../components/game/games';
 import { Observable, of } from 'rxjs';
 import { Score } from '../../components/score/Score';
 import { ScoreService } from '../score/score.service';
 import { User } from '../../components/user/User';
 import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
+import { CommentService } from '../comment/comment.service';
+import { Comment } from '../../components/comment/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,11 @@ import { HttpClient } from '@angular/common/http';
 export class GameService {
 
   constructor(
+    private commentService: CommentService,
     private scoreService: ScoreService,
     private userService: UserService,
     private httpClient: HttpClient) { }
-  games: Game[] = GAMES;
+  //games: Game[] = GAMES;
   ngOnInit() {
     console.log("Service Game running");
   }
@@ -35,5 +38,8 @@ export class GameService {
   }
   getUserName(id : number) : Observable<User>{
     return this.userService.getName(id);
+  }
+  getComments(id: number): Observable<Comment[]>{
+    return this.commentService.getCommentsByGame(id);
   }
 }

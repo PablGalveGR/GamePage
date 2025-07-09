@@ -1,0 +1,13 @@
+.formContainer{
+  margin: 10% 25%;
+  border: 1rem solid black;
+  
+}
+form{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+label{
+  font-size: 3rem;
+}

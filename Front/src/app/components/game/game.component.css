@@ -2,50 +2,109 @@ div.gameContainer {
   background-color: chartreuse;
   height: 100%;
 }
-div.gameHeader{
-  margin-bottom: 5rem;
+div.gameContainer h2{
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
+div.gameContainer h3{
+  font-size: 2rem;
+}
+/*Header*/
+div.gameHeader {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
 div.gameHeader h2 {
   text-align: center;
   font-size: 5rem;
   margin-bottom: 2rem;
 }
+
 div.gameHeader img {
   margin: 0% 25%;
   width: 50%;
   height: auto;
 }
-div.gameContainer p {
-  font-size: 2rem;
+
+div.gameHeader button.downloadGame {
+  background-color: var(--secondaryColor);
+  color: var(--contentBackgroundColor);
+  border: solid black 0.1rem;
+  border-radius: 0.5rem;
+  padding: 1rem 3rem;
+  font-size: 1.25rem;
+  margin-top: 2rem;
 }
-div.gameContainer div.game{
+
+div.gameHeader button.downloadGame:hover {
+  background-color: var(--contentBackgroundColor);
+  color: var(--secondaryColor);
+  cursor: pointer;
+  border-color: var(--secondaryColor);
+}
+/*Game body*/
+div.gameContainer p {
+  font-size: 1.5rem;
+}
+
+div.gameContainer div.game {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: space;
-  margin-left: 10%;
+  margin: 0% 10%;
+  padding: 3rem;
+  background-color: yellow;
 }
-div.scoreBoardContainer{
+div.gameContainer div.game div.gameBody section.gameDesc{
+  margin-bottom: 1rem;
+}
+
+/*ScoreBoard*/
+div.scoreBoardContainer {
   background-color: brown;
   margin: 0rem 5rem;
-  padding: 0rem rem;
+  padding: 0rem 3rem;
 }
-div.scoreBoardContainer h2{
+
+div.scoreBoardContainer h2 {
   font-size: 5rem;
 }
+
 table.scoreBoard {
   margin: 1rem 0;
   border: 0.1rem solid var(--secondaryColor);
   width: 100%;
 }
-table.scoreBoard tr#header{
+
+table.scoreBoard tr#header {
   background-color: var(--secondaryColor);
   font-weight: bold;
 }
+
 table.scoreBoard tr:nth-child(even) {
   background-color: var(--tableColor);
 }
-table.scoreBoard td{
+
+table.scoreBoard td {
   font-size: 2rem;
   padding: 1rem;
+}
+/*Comments*/
+section.commentsContainer h2{
+  margin-bottom: 1rem;
+}
+section.commentsContainer ul{
+  list-style: none;
+}
+section.commentsContainer ul li{
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 0.01rem solid black;
+}
+section.commentsContainer ul li p.commentBody{
+  font-size: 1.2rem;
 }

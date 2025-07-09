@@ -21,6 +21,7 @@ div.boxView div.gameContainer {
   padding: 0.1rem;
   max-width: 19%;
   max-height: 19%;
+  overflow: hidden;
 
 }
 
@@ -43,5 +44,5 @@ div.boxView div.gameContainer section.boxBody {
 }
 
 div.boxView div.gameContainer section.boxBody p {
-  text-overflow: ellipsis;
+  text-overflow:clip;
 }

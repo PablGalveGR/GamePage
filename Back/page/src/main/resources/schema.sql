@@ -8,7 +8,7 @@ CREATE TABLE GAME(
    name varchar(30) NOT NUll, 
    path varchar(150) unique,
    description varchar(1500),
-   portrait varchar(50) unique
+   portrait varchar(50)
 );
 CREATE TABLE SCORE(
    id int auto_increment PRIMARY KEY,
@@ -18,3 +18,10 @@ CREATE TABLE SCORE(
    FOREIGN KEY(game) REFERENCES GAME(id),
    FOREIGN KEY(username) REFERENCES USERS(id)
 );
+CREATE TABLE COMMENT(
+   id int auto_increment PRIMARY KEY,
+   game int NOT NUll,
+   username int NOT NULL,
+   comment text,
+   date datetime
+)

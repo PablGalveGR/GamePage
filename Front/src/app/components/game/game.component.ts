@@ -7,6 +7,7 @@ import { Score } from '../score/Score';
 import { User } from '../user/User';
 import { AsyncPipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
+import { Comment } from '../comment/Comment';
 
 @Component({
   selector: 'app-game',
@@ -19,23 +20,38 @@ export class GameComponent {
   constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
   game?: Game;
   scores : Observable<Score[]> = new Observable;
+  comments : Observable<Comment[]> = new Observable;
   users : Set<User> = new Set();
   id: number = Number(this.route.snapshot.paramMap.get('id'));
   ngOnInit() {
     this.getGame();
     this.getScores();
+    this.getComments();
     console.log("game component running")
   }
   getGame() : void {
     this.gameService.getGame(this.id).subscribe(game => this.game = game)!;
     console.log("Game :" + this.game?.name + " retrieved");
   }
+  getUser(id : number) : User{
+    return Array.from(this.users).find(user => user.id == id)!;
+  }
+  getName(id:number) : String{
+    let name : String = "";
+    try {
+      name = Array.from(this.users).find(user => user.id == id)!.name;
+      
+    } catch (error) {
+     name = "awA" 
+    }
+    return name; 
+  }
   getScores() : void{
     this.gameService.getScores(this.id).subscribe(async (scores) => {
       let users : Set<number> = new Set();
       for (let score of scores) {//gets all the users whom played the game
         this.gameService.getUser(score.username).subscribe(user => this.users.add(user));
-        users.add(score.username);
+        users.add(score.username);//User id
       }
       let scoresSorted = scores.sort((score1, score2) => score2.score - score1.score);//sort the array by score
       let scoreFiltered: Score[] = [];
@@ -48,10 +64,15 @@ export class GameComponent {
       this.scores = of(scoreFiltered);
     });
   }
-  getUser(id : number) : User{
-    return Array.from(this.users).find(user => user.id == id)!;
-  }
-  getName(id:number) : String{
-    return  Array.from(this.users).find(user => user.id == id)!.name;
+  getComments() : void{
+    this.gameService.getComments(this.id).subscribe(async (comments) => {
+      for (let comment of comments) {//gets all the users whom commented on the game
+        this.gameService.getUser(comment.username).subscribe(user => this.users.add(user));
+        console.log(typeof comment.date);
+      }
+      //let commentsSorted = comments.sort((c1, c2) => c1.id - c2.id);//sort the array by date
+      console.log("Comments for the game:" + this.game?.name + " retrieved");
+      this.comments = of(comments);
+    });
   }
 }
