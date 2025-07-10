@@ -4,6 +4,7 @@ import { GameComponent } from './components/game/game.component';
 import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
+
 export const routes: Routes = [
   {path: '', component:DashboardComponent},
   {path: 'game/:id', component:GameComponent},

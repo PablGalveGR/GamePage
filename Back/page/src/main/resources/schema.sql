@@ -1,5 +1,5 @@
 CREATE TABLE USERS(
-   id int auto_increment PRIMARY KEY,
+   id int PRIMARY KEY AUTO_INCREMENT(3, 1),
    name varchar(30) NOT NULL,
    passwd varchar(150)
 );

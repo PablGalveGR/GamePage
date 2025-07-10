@@ -54,7 +54,7 @@ public class UserController {// Never return the password to the Client
   // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void createRun(@Valid @RequestBody User user) {
+  void createUser(@Valid @RequestBody User user) {
     userRepository.createUser(user);
   }
 

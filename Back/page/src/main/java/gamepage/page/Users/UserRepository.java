@@ -19,10 +19,10 @@ public class UserRepository {
 
   // Insert querys
   public int createUser(User user) {
-    String query = "INSERT INTO USERS" + "( name, passwd)"
+    String query = "INSERT INTO USERS" + "( name, passwd )"
         + " VALUES(?, ?);";
     var updated = jdbcClient.sql(query)
-        .params(List.of(user.getName(),user.getPaswd())).update();
+        .params(List.of(user.getName(), user.getPasswd())).update();
     Assert.state(updated == 1,
         "Failed to create User: " + user.getName());
     return updated;
@@ -35,7 +35,7 @@ public class UserRepository {
       if (existingUser.isPresent()) {
         String query = "UPDATE USERS SET name = ?, passwd = ? WHERE id = ?;";
         var updated = jdbcClient.sql(query)
-            .params(List.of(user.getName(),user.getPaswd(), user.getId()))
+            .params(List.of(user.getName(),user.getPasswd(), user.getId()))
             .update();
         Assert.state(updated == 1,
             "Failed to Update User: " + user.getName());

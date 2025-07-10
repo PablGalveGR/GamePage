@@ -11,7 +11,7 @@ public class PageApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(PageApplication.class, args);
-    System.out.println("Welcome to GamePage");
+    System.out.println("------------------------------Welcome to GamePage------------------------------------------------------------------");
     //System.out.println("Users: " + user.toString());
 
   }

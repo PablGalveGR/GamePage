@@ -3,6 +3,7 @@ import { Score } from '../../components/score/Score';
 //import { SCORES } from '../../components/score/scores';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ROUTE } from '../ROUTE';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,10 @@ export class ScoreService {
   constructor(private httpClient : HttpClient) { }
   //scores : Score[] = SCORES;
   getScores(): Observable<Score[]>{
-    return this.httpClient.get<Score[]>('http://localhost:8080/api/scores');
+    return this.httpClient.get<Score[]>(ROUTE +'/api/scores');
   }
   getScoresByGame(id:number) : Observable<Score[]>{
-    return this.httpClient.get<Score[]>('http://localhost:8080/api/scores/game/'+id);
+    return this.httpClient.get<Score[]>(ROUTE + '/api/scores/game/'+id);
     
   }
   /*getScoresByUser(id:number) : Observable<Score[]>{

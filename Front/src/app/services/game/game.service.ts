@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Game } from '../../components/game/Game';
-//import { GAMES } from '../../components/game/games';
 import { Observable, of } from 'rxjs';
 import { Score } from '../../components/score/Score';
 import { ScoreService } from '../score/score.service';
@@ -9,6 +8,7 @@ import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { CommentService } from '../comment/comment.service';
 import { Comment } from '../../components/comment/Comment';
+import { ROUTE } from '../ROUTE';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,14 @@ export class GameService {
     private scoreService: ScoreService,
     private userService: UserService,
     private httpClient: HttpClient) { }
-  //games: Game[] = GAMES;
   ngOnInit() {
     console.log("Service Game running");
   }
   getGame(id: number): Observable<Game> {
-    return this.httpClient.get<Game>('http://localhost:8080/api/games/'+id);
+    return this.httpClient.get<Game>(ROUTE +'/api/games/'+id);
   }
   getGames(): Observable<Game[]> {
-    return this.httpClient.get<Game[]>('http://localhost:8080' + '/api/games');
+    return this.httpClient.get<Game[]>(ROUTE + '/api/games');
   }
   getScores(id: number): Observable<Score[]> {
     return this.scoreService.getScoresByGame(id);

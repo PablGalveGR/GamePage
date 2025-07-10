@@ -13,13 +13,13 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private  String name;
-  private String paswd;
+  private String passwd;
   
 
-  public User(long id, String name, String paswd) {
+  public User(long id, String name, String passwd) {
     this.id = id;
     this.name = name;
-    this.paswd = paswd;
+    this.passwd = passwd;
   }
   public User(){
   }
@@ -40,12 +40,12 @@ public class User {
     this.name = name;
   }
 
-  public String getPaswd() {
-    return this.paswd;
+  public String getPasswd() {
+    return this.passwd;
   }
 
-  public void setPaswd(String paswd) {
-    this.paswd = paswd;
+  public void setPasswd(String paswd) {
+    this.passwd = paswd;
   }
 
 
@@ -54,7 +54,7 @@ public class User {
     return "{" +
       " id='" + getId() + "'" +
       ", name='" + getName() + "'" +
-      ", paswd='" + getPaswd() + "'" +
+      ", paswd='" + getPasswd() + "'" +
       "}";
   }
 

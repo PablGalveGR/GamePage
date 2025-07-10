@@ -5,6 +5,7 @@ import { User } from '../../components/user/User';
 import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Comment } from '../../components/comment/Comment';
+import { ROUTE } from '../ROUTE';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CommentService {
     console.log("Service Comments running");
   }
   getCommentsByGame(game :number): Observable<Comment[]>{
-    return this.httpClient.get<Comment[]>('http://localhost:8080/api/comments/game/' + game);
+    return this.httpClient.get<Comment[]>(ROUTE + '/api/comments/game/' + game);
   }
   
 }
