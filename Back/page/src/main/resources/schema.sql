@@ -1,6 +1,6 @@
 CREATE TABLE USERS(
    id int PRIMARY KEY AUTO_INCREMENT(3, 1),
-   name varchar(30) NOT NULL,
+   name varchar(30) NOT NULL unique,
    passwd varchar(150)
 );
 CREATE TABLE GAME(
@@ -24,4 +24,4 @@ CREATE TABLE COMMENT(
    username int NOT NULL,
    comment text,
    date datetime
-)
+);

@@ -72,6 +72,12 @@ public class UserRepository {
         .query(User.class).optional();
     return user;
   }
+  public Optional<User> getUserByName(String name) {
+    String query = "SELECT * FROM USERS WHERE name = :name;";
+    Optional<User> user = jdbcClient.sql(query).param("name", name)
+        .query(User.class).optional();
+    return user;
+  }
 
   Optional<User> getUserNameById(int id) {
     String query = "SELECT * FROM USERS r WHERE id = :id;";
