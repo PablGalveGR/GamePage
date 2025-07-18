@@ -22,7 +22,12 @@ export class LoginComponent {
   login(): String {
     this.logInService.login(this.request).subscribe(response => {
       if (response) {
-        console.log("Response received");
+        console.log(response.token);
+        if(response.user && response.user.name == this.request.name){
+          //Save the session into the client server
+          sessionStorage.setItem(response.user.name, response.token);
+          console.log("Session initialized :" + response.user.name);
+        }
       }
       else {
         console.log("No response");

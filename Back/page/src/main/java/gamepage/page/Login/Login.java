@@ -1,7 +1,6 @@
 package gamepage.page.Login;
 
 import gamepage.page.Users.User;
-import java.util.Objects;
 
 public class Login {
   User user;
