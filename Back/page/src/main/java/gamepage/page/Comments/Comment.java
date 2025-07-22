@@ -1,7 +1,4 @@
 package gamepage.page.Comments;
-//import java.util.Objects;
-
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Comment {

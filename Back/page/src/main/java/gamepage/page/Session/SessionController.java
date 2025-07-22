@@ -53,7 +53,19 @@ public class SessionController {
     System.out.println("All sessions : " + SessionsInMemory.getSessionsInMemory().toString());
     return session;
   }
-  void logout(Session session){
+
+  void logout(Session session) {
     SessionsInMemory.deleteSession(session);
+  }
+
+  @RequestMapping("/check")
+  Session checkLogin(@Valid @RequestBody Session session) {
+    System.out.println("Checking session for " + session.getUser().getName());
+    Session newSession = new Session();
+    if (SessionsInMemory.sessions.contains(session)) {
+      SessionsInMemory.sessions.remove(SessionsInMemory.sessions.indexOf(session));
+    }
+    newSession = createSession(session.user);
+    return newSession;
   }
 }
