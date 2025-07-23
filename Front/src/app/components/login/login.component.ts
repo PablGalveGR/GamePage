@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../user/User';
 import { LoginService } from '../../services/logIn/login.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
     passwd: '',
     id: 0
   };
-  constructor(private logInService: LoginService) {
+  constructor(private logInService: LoginService, private router: Router) {
 
   }
   login(): String {
@@ -34,6 +35,7 @@ export class LoginComponent {
       }
     });
     console.log("User " + this.request.name + '|' + this.request.passwd);
+    this.router.navigate(['/']);
     return "Error";
   }
 }

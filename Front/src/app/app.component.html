@@ -4,7 +4,8 @@
     <li (click) = "goTo('')">Browse Games</li>
     <li>Community</li>
     <li (click) = "goTo('/signUp')">Sign up</li>
-    <li (click) = "goTo('/login')">Login</li>
+    <li (click) = "goTo('/login')" *ngIf ="!login">Login</li>
+    <li (click) = "logout()" *ngIf ="login">Logout</li>
   </ul>
 </nav>
 <!--

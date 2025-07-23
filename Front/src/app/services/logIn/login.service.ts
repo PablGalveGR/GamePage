@@ -16,6 +16,21 @@ export class LoginService {
   login(request: User): Observable<Session> {
     return this.httpClient.post<Session>(ROUTE + '/api/session', request);
   }
+  logout(): Observable<Session>{
+    let session: Session = {
+      user: {
+        id: 0,
+        name: '',
+        passwd: ''
+      },
+      token: ''
+    };
+    if (sessionStorage.length > 0) {
+      session.user.name = sessionStorage.key(0)!;
+      session.token = sessionStorage.getItem(session.user.name)!;
+    }
+    return this.httpClient.post<Session>(ROUTE + '/api/session/logout', session);
+  }
   checkLogin(): Observable<Session> {
     let session: Session = {
       user: {

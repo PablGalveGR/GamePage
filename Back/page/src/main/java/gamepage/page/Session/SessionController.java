@@ -1,6 +1,8 @@
 package gamepage.page.Session;
 
+import java.util.HashMap;
 import java.util.Optional;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,22 +52,53 @@ public class SessionController {
     session.setToken(session.newToken());
     // Save Session
     SessionsInMemory.addSession(session);
+    System.out.println("Added session for " + user.getName());
     System.out.println("All sessions : " + SessionsInMemory.getSessionsInMemory().toString());
     return session;
   }
 
-  void logout(Session session) {
-    SessionsInMemory.deleteSession(session);
+  HashMap<Integer, Boolean> findSession(Session session) {
+    HashMap<Integer, Boolean> res = new HashMap<>();
+    for (Session session_ : SessionsInMemory.sessions) {
+      if (session_.user.getName().equals(session.getUser().getName())
+          && session_.getToken().equals(session.getToken())) {
+        System.out.println("Session found for " + session.getUser().getName());
+        res.put(SessionsInMemory.sessions.indexOf(session_), true);
+        // System.out.println("Updating session for " + session.getUser().getName());
+
+      }
+    }
+    return res;
+  }
+
+  Session removeSession(Session session) {
+    HashMap<Integer, Boolean> sessionFound = findSession(session);
+    if (sessionFound.size() > 0) {
+      int index = sessionFound.keySet().iterator().next();
+      SessionsInMemory.sessions.remove(index);
+    }
+    return session;
   }
 
   @RequestMapping("/check")
   Session checkLogin(@Valid @RequestBody Session session) {
     System.out.println("Checking session for " + session.getUser().getName());
     Session newSession = new Session();
-    if (SessionsInMemory.sessions.contains(session)) {
-      SessionsInMemory.sessions.remove(SessionsInMemory.sessions.indexOf(session));
+    if (SessionsInMemory.sessions.size() > 0) {
+      this.removeSession(session);
+      System.out.println("Updating session for " + session.getUser().getName());
+      newSession = createSession(session.user);
     }
-    newSession = createSession(session.user);
     return newSession;
   }
+
+  @RequestMapping("/logout")
+  Session logout(@Valid @RequestBody Session session) {
+    if(SessionsInMemory.sessions.size() > 0){
+      this.removeSession(session);
+      System.out.println("User "+ session.getUser().getName() + " logged out");
+    }
+    return new Session();
+  }
+
 }
