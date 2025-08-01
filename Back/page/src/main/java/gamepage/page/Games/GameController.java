@@ -31,7 +31,7 @@ public class GameController {//Never return the password to the Client
 @GetMapping("")
   public List<Game> findAllGames() {
     List<Game> games = gameRepository.getAllGames();
-    System.out.println(games.toString());
+    System.out.println("Games " + games.size());
     return games;
   }
 // General path plus an element to pass to the controller

@@ -2,13 +2,16 @@ div.gameContainer {
   background-color: chartreuse;
   height: 100%;
 }
-div.gameContainer h2{
+
+div.gameContainer h2 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
-div.gameContainer h3{
+
+div.gameContainer h3 {
   font-size: 2rem;
 }
+
 /*Header*/
 div.gameHeader {
   margin-bottom: 2rem;
@@ -45,6 +48,7 @@ div.gameHeader button.downloadGame:hover {
   cursor: pointer;
   border-color: var(--secondaryColor);
 }
+
 /*Game body*/
 div.gameContainer p {
   font-size: 1.5rem;
@@ -59,7 +63,8 @@ div.gameContainer div.game {
   padding: 3rem;
   background-color: yellow;
 }
-div.gameContainer div.game div.gameBody section.gameDesc{
+
+div.gameContainer div.game div.gameBody section.gameDesc {
   margin-bottom: 1rem;
 }
 
@@ -93,18 +98,33 @@ table.scoreBoard td {
   font-size: 2rem;
   padding: 1rem;
 }
+
 /*Comments*/
-section.commentsContainer h2{
+section.commentsContainer h2 {
   margin-bottom: 1rem;
 }
-section.commentsContainer ul{
+
+section.commentsContainer h2 span {
+  border: 0.2rem solid white;
+}
+
+section.commentsContainer h2 span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: red;
+  border: 0.2rem solid black;
+}
+
+section.commentsContainer ul {
   list-style: none;
 }
-section.commentsContainer ul li{
+
+section.commentsContainer ul li {
   margin: 0.5rem;
   padding: 1rem;
   border: 0.01rem solid black;
 }
-section.commentsContainer ul li p.commentBody{
+
+section.commentsContainer ul li p.commentBody {
   font-size: 1.2rem;
 }

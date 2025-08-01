@@ -19,43 +19,44 @@ import { Comment } from '../comment/Comment';
 export class GameComponent {
   constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
   game?: Game;
-  scores : Observable<Score[]> = new Observable;
-  comments : Observable<Comment[]> = new Observable;
-  users : Set<User> = new Set();
+  scores: Observable<Score[]> = new Observable;
+  comments: Observable<Comment[]> = new Observable;
+  users: Set<User> = new Set();
   id: number = Number(this.route.snapshot.paramMap.get('id'));
+  commentsGUI: boolean = false;
   ngOnInit() {
     this.getGame();
     this.getScores();
-    this.getComments();
+    //this.getComments();
     console.log("game component running")
   }
-  getGame() : void {
+  getGame(): void {
     this.gameService.getGame(this.id).subscribe(game => this.game = game)!;
     console.log("Game :" + this.game?.name + " retrieved");
   }
-  getUser(id : number) : User{
+  getUser(id: number): User {
     return Array.from(this.users).find(user => user.id == id)!;
   }
-  getName(id:number) : String{
-    let name : String = "";
+  getName(id: number): String {
+    let name: String = "";
     try {
       name = Array.from(this.users).find(user => user.id == id)!.name;
-      
+
     } catch (error) {
-     name = "awA" 
+      name = "awA"
     }
-    return name; 
+    return name;
   }
-  getScores() : void{
+  getScores(): void {
     this.gameService.getScores(this.id).subscribe(async (scores) => {
-      let users : Set<number> = new Set();
+      let users: Set<number> = new Set();
       for (let score of scores) {//gets all the users whom played the game
         this.gameService.getUser(score.username).subscribe(user => this.users.add(user));
         users.add(score.username);//User id
       }
       let scoresSorted = scores.sort((score1, score2) => score2.score - score1.score);//sort the array by score
       let scoreFiltered: Score[] = [];
-      
+
       for (let user of users) {//Take only the highest score from each user
         scoreFiltered.push(scoresSorted.find(score => score.username == user)!);
       }
@@ -64,15 +65,24 @@ export class GameComponent {
       this.scores = of(scoreFiltered);
     });
   }
-  getComments() : void{
+  showComments() {
+    this.commentsGUI = !this.commentsGUI
+    if (this.commentsGUI) {
+      this.getComments();
+    }
+  }
+  getComments(): void {
     this.gameService.getComments(this.id).subscribe(async (comments) => {
       for (let comment of comments) {//gets all the users whom commented on the game
         this.gameService.getUser(comment.username).subscribe(user => this.users.add(user));
         console.log(typeof comment.date);
       }
-      //let commentsSorted = comments.sort((c1, c2) => c1.id - c2.id);//sort the array by date
       console.log("Comments for the game:" + this.game?.name + " retrieved");
+      comments = this.shortCommentsByDate(comments);
       this.comments = of(comments);
     });
+  }
+  shortCommentsByDate(comments: Comment[]): Comment[] {
+    return comments.sort((c1, c2) => <any>new Date(c1.date) - <any>new Date(c2.date));
   }
 }

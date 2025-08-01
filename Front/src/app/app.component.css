@@ -40,6 +40,10 @@ nav.desktop h1:hover{
   background-color: var(--secondaryColor);
   cursor: pointer;
 }
+/*Events click*/
+#login > * , #signUp > * {
+    pointer-events: none;
+}
 
 /*End Nav Styles*/
 /*Footer Styles*/

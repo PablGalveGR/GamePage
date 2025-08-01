@@ -1,11 +1,36 @@
 <nav class="desktop"><!--*ngIf= desktop-->
-  <h1 class="title" (click) = "goTo('')">{{title}}</h1>
+  <h1 class="title" (click)="goTo('')">{{title}}</h1>
   <ul>
-    <li (click) = "goTo('')">Browse Games</li>
+    <li (click)="goTo('')">Browse Games</li>
     <li>Community</li>
-    <li (click) = "goTo('/signUp')">Sign up</li>
-    <li (click) = "goTo('/login')" *ngIf ="!login">Login</li>
-    <li (click) = "logout()" *ngIf ="login">Logout</li>
+    <li id="signUp" (click)="showFormSign()">Sign up</li>
+    <li *ngIf="signUpForm">
+          <form>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="name" [(ngModel)]=user.name required>
+            <label for="passwd">Password</label>
+            <input type="password" id="passwd" name="passwd" [(ngModel)]=user.passwd required>
+            <button type="submit" (click)="createUser()">Create</button>
+          </form>
+        </li>
+    <li id="login" (click)="showFormLog()" *ngIf="!login_">Login</li>
+    <li *ngIf="loginForm">
+      <form>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="name" [(ngModel)]=request.name required>
+        <label for="passwd">Password</label>
+        <input type="password" id="passwd" name="passwd" [(ngModel)]=request.passwd required>
+        <button type="submit" (click)="login()">Login</button>
+      </form>
+    </li>
+    <li *ngIf="login_">
+      {{getUsername()}}
+      <ul>
+        <li (click)="logout()">Logout</li>
+      </ul>
+    </li>
+
+
   </ul>
 </nav>
 <!--

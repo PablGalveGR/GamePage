@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ROUTE } from '../ROUTE';
 import { User } from '../../components/user/User';
-import { Session } from '../../components/login/Session';
+import { Session } from '../../components/session/Session';
 
 @Injectable({
   providedIn: 'root'
