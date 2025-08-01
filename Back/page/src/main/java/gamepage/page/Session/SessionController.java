@@ -77,17 +77,24 @@ public class SessionController {
       int index = sessionFound.keySet().iterator().next();
       SessionsInMemory.sessions.remove(index);
     }
+    else{
+
+    }
     return session;
   }
 
   @RequestMapping("/check")
-  Session checkLogin(@Valid @RequestBody Session session) {
+  Session checkSession(@Valid @RequestBody Session session) {
     System.out.println("Checking session for " + session.getUser().getName());
     Session newSession = new Session();
-    if (SessionsInMemory.sessions.size() > 0) {
+    if (SessionsInMemory.sessions.size() > 0 && !this.findSession(session).isEmpty()) {
       this.removeSession(session);
       System.out.println("Updating session for " + session.getUser().getName());
       newSession = createSession(session.user);
+    }
+    else{
+      newSession.user.setName("null");
+      newSession.setToken(null);
     }
     return newSession;
   }

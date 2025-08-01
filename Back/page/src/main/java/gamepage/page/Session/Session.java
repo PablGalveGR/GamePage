@@ -35,8 +35,8 @@ public class Session {
     return this.token;
   }
 
-  public void setToken(String session) {
-    this.token = session;
+  public void setToken(String token) {
+    this.token = token;
   }
 
   @Override

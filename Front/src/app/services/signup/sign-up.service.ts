@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../components/user/User';
 import { HttpClient } from '@angular/common/http';
 import { ROUTE } from '../ROUTE';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { ROUTE } from '../ROUTE';
 export class SignUpService {
 
   constructor(private httpClient: HttpClient) { }
-  createUser(user: User) {
-    this.httpClient.post<User>(ROUTE + '/api/users', user).subscribe(user => console.log('AWAWAWAW'));
+  createUser(user: User) : Observable<User>{
+    return this.httpClient.post<User>(ROUTE + '/api/users', user);
   }
 }

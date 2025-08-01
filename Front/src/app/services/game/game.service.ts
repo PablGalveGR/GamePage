@@ -29,6 +29,14 @@ export class GameService {
   getGames(): Observable<Game[]> {
     return this.httpClient.get<Game[]>(ROUTE + '/api/games');
   }
+  getGamesByName(name : string, games : Game[]): Game[]{
+    let filteredGames : Game[] = new Array();
+    games.forEach(game =>{
+      if(game.name.includes(name))
+        filteredGames.push(game);
+    });
+    return filteredGames;
+  }
   getScores(id: number): Observable<Score[]> {
     return this.scoreService.getScoresByGame(id);
   }

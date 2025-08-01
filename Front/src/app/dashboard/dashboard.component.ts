@@ -22,8 +22,22 @@ export class DashboardComponent {
   getGames() {
     this.gameService.getGames().subscribe(games => this.games = games);
   }
+  getGamesByName(name : string){
+    this.games = this.gameService.getGamesByName(name, this.games);
+  }
   goToDetail(id: number) {
     this.router.navigate(['/game/' + id]);
+  }
+  filterBy(text: string) {
+    this.games = this.games.filter(i => i.name.toLowerCase().includes(text.toLowerCase()));
+    console.log("Filtered :" + JSON.stringify(this.games));
+    console.log("No Filtered :" + JSON.stringify(this.games));
+  }
+  clearFilter(filter? : HTMLInputElement) {
+    if(filter){
+      filter.value = "";
+    }
+    this.filterBy("");
   }
 
 }
