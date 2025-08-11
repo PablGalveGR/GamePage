@@ -5,6 +5,7 @@ import { NgIf } from '@angular/common';
 import { User } from './components/user/User';
 import { SignUpService } from './services/signup/sign-up.service';
 import { FormsModule } from '@angular/forms';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private router: Router, private loginService: LoginService, private signUpService: SignUpService) { }
+  constructor(private router: Router,private userService : UserService, private loginService: LoginService, private signUpService: SignUpService) { }
   title = 'Front';
   login_: boolean = false;
   signUpForm: boolean = false;
@@ -68,13 +69,13 @@ export class AppComponent {
   }
   login() : string{
     let error : string= "";
-    if (this.checkForms(this.user)) {
+    if (this.checkForms(this.request)) {
       this.loginService.login(this.request).subscribe(response => {
         if (response) {
           console.log(response.token);
           if (response.user && response.user.name == this.request.name) {
             //Save the session into the client server
-            sessionStorage.setItem(response.user.name, response.token);
+            sessionStorage.setItem(response.user.id.toString(), response.token);
             console.log("Session initialized :" + response.user.name);
           }
         }
@@ -92,8 +93,6 @@ export class AppComponent {
       error = "Password or username missing"; 
     }
     return error;
-
-
   }
   logout() {
     if (sessionStorage.length > 0) {
@@ -121,7 +120,9 @@ export class AppComponent {
     return this.login_;
   }
   getUsername(): string {
-    let name: string = sessionStorage.key(0)!;
+    let id: number = parseInt(sessionStorage.key(0)!);
+    let name : string ="";
+    this.userService.getName(id).subscribe(user => {name = user.name});
     return name;
   }
 }

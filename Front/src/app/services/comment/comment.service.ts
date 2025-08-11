@@ -20,5 +20,8 @@ export class CommentService {
   getCommentsByGame(game :number): Observable<Comment[]>{
     return this.httpClient.get<Comment[]>(ROUTE + '/api/comments/game/' + game);
   }
+  addComment(comment : Comment){
+    return this.httpClient.post(ROUTE + '/api/comments/add', comment);
+  }
   
 }

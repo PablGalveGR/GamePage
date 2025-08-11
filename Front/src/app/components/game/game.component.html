@@ -11,7 +11,7 @@
         <p>{{game.description}}</p>
       </section>
       <section class="commentsContainer">
-        <h2>Comments <span (click) = "showComments()"> Show comments </span></h2>
+        <h2>Comments <span (click) = "showComments()"> Show comments </span> <span>Add comment</span></h2>
         <ul *ngIf ="commentsGUI">
           <li class="comment" *ngFor="let comment of comments | async">
             <h3 class="commentUser">{{getName(comment.username)}} <span>{{comment.date}}</span></h3>

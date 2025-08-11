@@ -8,6 +8,7 @@ import { User } from '../user/User';
 import { AsyncPipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { Comment } from '../comment/Comment';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-game',
@@ -22,8 +23,15 @@ export class GameComponent {
   scores: Observable<Score[]> = new Observable;
   comments: Observable<Comment[]> = new Observable;
   users: Set<User> = new Set();
-  id: number = Number(this.route.snapshot.paramMap.get('id'));
+  private id: number = Number(this.route.snapshot.paramMap.get('id'));
   commentsGUI: boolean = false;
+  newComment: Comment = {
+    id: 0,
+    game: this.id,
+    username: 0,
+    comment: "",
+    date: new Date()
+  };
   ngOnInit() {
     this.getGame();
     this.getScores();
@@ -84,5 +92,15 @@ export class GameComponent {
   }
   shortCommentsByDate(comments: Comment[]): Comment[] {
     return comments.sort((c1, c2) => <any>new Date(c1.date) - <any>new Date(c2.date));
+  }
+  addComment(text: string) {
+    if (this.checkIfSession()) {
+      this.newComment.id = 0;
+      this.newComment.game = this.id;
+      this.newComment.username =parseInt(sessionStorage.key(0)!);
+    }
+  }
+  checkIfSession(): boolean {
+    return sessionStorage.length > 0;
   }
 }
