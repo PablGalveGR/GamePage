@@ -1,0 +1,33 @@
+/*Comments*/
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+h3{
+  font-size: 1.5rem;
+}
+
+h2 span {
+  border: 0.2rem solid white;
+}
+
+h2 span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: red;
+  border: 0.2rem solid black;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 0.01rem solid black;
+}
+
+ul li p.commentBody {
+  font-size: 1.2rem;
+}

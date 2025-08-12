@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../../components/user/User';
 import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
-import { Comment } from '../../components/comment/Comment';
+import { Comment } from '../../components/comments/Comment';
 import { ROUTE } from '../ROUTE';
 
 @Injectable({

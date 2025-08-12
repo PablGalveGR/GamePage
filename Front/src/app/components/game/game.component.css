@@ -98,33 +98,3 @@ table.scoreBoard td {
   font-size: 2rem;
   padding: 1rem;
 }
-
-/*Comments*/
-section.commentsContainer h2 {
-  margin-bottom: 1rem;
-}
-
-section.commentsContainer h2 span {
-  border: 0.2rem solid white;
-}
-
-section.commentsContainer h2 span:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  color: red;
-  border: 0.2rem solid black;
-}
-
-section.commentsContainer ul {
-  list-style: none;
-}
-
-section.commentsContainer ul li {
-  margin: 0.5rem;
-  padding: 1rem;
-  border: 0.01rem solid black;
-}
-
-section.commentsContainer ul li p.commentBody {
-  font-size: 1.2rem;
-}

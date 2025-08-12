@@ -7,13 +7,13 @@ import { Score } from '../score/Score';
 import { User } from '../user/User';
 import { AsyncPipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
-import { Comment } from '../comment/Comment';
-import { Form } from '@angular/forms';
+import { Comment } from '../comments/Comment';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe],
+  imports: [NgIf, NgFor, AsyncPipe, CommentsComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
@@ -35,7 +35,6 @@ export class GameComponent {
   ngOnInit() {
     this.getGame();
     this.getScores();
-    //this.getComments();
     console.log("game component running")
   }
   getGame(): void {
@@ -72,33 +71,6 @@ export class GameComponent {
       console.log("Scores for the game:" + this.game?.name + " retrieved");
       this.scores = of(scoreFiltered);
     });
-  }
-  showComments() {
-    this.commentsGUI = !this.commentsGUI
-    if (this.commentsGUI) {
-      this.getComments();
-    }
-  }
-  getComments(): void {
-    this.gameService.getComments(this.id).subscribe(async (comments) => {
-      for (let comment of comments) {//gets all the users whom commented on the game
-        this.gameService.getUser(comment.username).subscribe(user => this.users.add(user));
-        console.log(typeof comment.date);
-      }
-      console.log("Comments for the game:" + this.game?.name + " retrieved");
-      comments = this.shortCommentsByDate(comments);
-      this.comments = of(comments);
-    });
-  }
-  shortCommentsByDate(comments: Comment[]): Comment[] {
-    return comments.sort((c1, c2) => <any>new Date(c1.date) - <any>new Date(c2.date));
-  }
-  addComment(text: string) {
-    if (this.checkIfSession()) {
-      this.newComment.id = 0;
-      this.newComment.game = this.id;
-      this.newComment.username =parseInt(sessionStorage.key(0)!);
-    }
   }
   checkIfSession(): boolean {
     return sessionStorage.length > 0;
