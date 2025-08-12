@@ -85,16 +85,15 @@ public class SessionController {
 
   @RequestMapping("/check")
   Session checkSession(@Valid @RequestBody Session session) {
-    System.out.println("Checking session for " + session.getUser().getName());
+    System.out.println("Checking session for " + session.getUser().getId());
     Session newSession = new Session();
     if (SessionsInMemory.sessions.size() > 0 && !this.findSession(session).isEmpty()) {
       this.removeSession(session);
-      System.out.println("Updating session for " + session.getUser().getName());
+      System.out.println("Updating session for " + session.getUser().getId());
       newSession = createSession(session.user);
     }
     else{
-      newSession.user.setName("null");
-      newSession.setToken(null);
+      System.out.println("No session for " + session.getUser().toString());
     }
     return newSession;
   }

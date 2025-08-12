@@ -15,8 +15,8 @@ import { UserService } from './services/user/user.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private router: Router,private userService : UserService, private loginService: LoginService, private signUpService: SignUpService) { }
-  title = 'Front';
+  constructor(private router: Router, private userService: UserService, private loginService: LoginService, private signUpService: SignUpService) { }
+  title = 'GeekyVerse';
   login_: boolean = false;
   signUpForm: boolean = false;
   loginForm: boolean = false;
@@ -67,8 +67,8 @@ export class AppComponent {
     return error;
 
   }
-  login() : string{
-    let error : string= "";
+  login(): string {
+    let error: string = "";
     if (this.checkForms(this.request)) {
       this.loginService.login(this.request).subscribe(response => {
         if (response) {
@@ -89,8 +89,8 @@ export class AppComponent {
       this.login_ = true;
       this.showFormLog();
     }
-    else{
-      error = "Password or username missing"; 
+    else {
+      error = "Password or username missing";
     }
     return error;
   }
@@ -106,13 +106,16 @@ export class AppComponent {
     this.login_ = false;
     if (sessionStorage.length > 0) {
       this.loginService.checkLogin().subscribe(session => {
-        if (sessionStorage.key(0) == session.user.name) {
-          sessionStorage.setItem(session.user.name, session.token);
-          this.login_ = true;
-          console.log("Session for " + session.user.name + " correct and updated");
-        } else {
+        if (session.token != '' && session.token.length > 0) {
+          if (parseInt(sessionStorage.key(0)!) == session.user.id) {
+            sessionStorage.setItem(session.user.id.toString(), session.token);
+            this.login_ = true;
+            console.log("Session for " + session.user.id + " correct and updated");
+          }
+        }
+        else {
           sessionStorage.clear();
-          console.log("Session for " + session.user.name + " closed due to incorreect match");
+          console.log("Session for " + session.user.id + " closed due to incorreect match");
           this.login_ = false;
         }
       });
@@ -121,8 +124,8 @@ export class AppComponent {
   }
   getUsername(): string {
     let id: number = parseInt(sessionStorage.key(0)!);
-    let name : string ="";
-    this.userService.getName(id).subscribe(user => {name = user.name});
+    let name: string = "";
+    this.userService.getName(id).subscribe(user => { name = user.name });
     return name;
   }
 }

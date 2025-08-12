@@ -41,7 +41,7 @@ export class LoginService {
       token: ''
     };
     if (sessionStorage.length > 0) {
-      session.user.name = sessionStorage.key(0)!;
+      session.user.id = parseInt(sessionStorage.key(0)!);
       session.token = sessionStorage.getItem(session.user.name)!;
     }
     return this.httpClient.post<Session>(ROUTE + '/api/session/check', session);
