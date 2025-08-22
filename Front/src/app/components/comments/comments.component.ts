@@ -7,6 +7,7 @@ import { Score } from '../score/Score';
 import { User } from '../user/User';
 import { Comment } from './Comment';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { CommentService } from '../../services/comment/comment.service';
 
 @Component({
   selector: 'app-comments',
@@ -16,7 +17,11 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
   styleUrl: './comments.component.css'
 })
 export class CommentsComponent {
-  constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private gameService: GameService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private commentService: CommentService) { }
   @Input() game?: Game;
   @Input() users?: Set<User>;
   comments: Observable<Comment[]> = new Observable;
@@ -56,7 +61,11 @@ export class CommentsComponent {
       this.newComment.id = 0;
       this.newComment.game = this.gameId;
       this.newComment.username = parseInt(sessionStorage.key(0)!);
+      this.commentService.addComment(this.newComment);
     }
+  }
+  getUser() : number{
+    return parseInt(sessionStorage.key(0)!);
   }
   getName(id: number): String {
     let name: String = "";

@@ -22,28 +22,29 @@ public class SessionController {
   }
 
   @RequestMapping("")
-  Session doLogin(@Valid @RequestBody User user) {
-    Optional<User> login = this.userRepository.getUserByName(user.getName());
-    Session token = new Session();
+  Session doLogin( @Valid @RequestBody User user) {
+    Session session = new Session();
+    /*Optional<User> login = this.userRepository.getUserByName(user.getName());
+    
     if (login.isPresent() && (!user.getPasswd().isBlank() || !user.getPasswd().isEmpty())) {
       System.out.println("User " + user.getName() + " trying to login");
       if (login.get().getPasswd().equals(user.getPasswd())) {
-        /* If both passwords good: */
-        token = createSession(user);
-        System.out.println("New session for user: " + user.getName() + " with token :" + token.getToken());
+        /* If both passwords good: 
+        session = createSession(user);
+        System.out.println("New session for user: " + user.getName() + " with token :" + session.getToken());
       } else {
-        token.setToken("Password incorrect");
+        session.setToken("Password incorrect");
       }
     } else {
       if ((user.getPasswd().isBlank() || user.getPasswd().isEmpty())) {
-        token.setToken("Password is null");
+        session.setToken("Password is null");
         System.out.println("User " + user.getName() + " no password sent from the client");
       } else {
         System.out.println("User " + user.getName() + " does not exist");
-        token.setToken("User " + user.getName() + " does not exist");
+        session.setToken("User " + user.getName() + " does not exist");
       }
-    }
-    return token;
+    }*/
+    return session;
   }
 
   Session createSession(User user) {
@@ -64,7 +65,7 @@ public class SessionController {
           && session_.getToken().equals(session.getToken())) {
         System.out.println("Session found for " + session.getUser().getName());
         res.put(SessionsInMemory.sessions.indexOf(session_), true);
-        // System.out.println("Updating session for " + session.getUser().getName());
+        System.out.println("Updating session for " + session.getUser().getName());
 
       }
     }
@@ -76,8 +77,7 @@ public class SessionController {
     if (sessionFound.size() > 0) {
       int index = sessionFound.keySet().iterator().next();
       SessionsInMemory.sessions.remove(index);
-    }
-    else{
+    } else {
 
     }
     return session;
@@ -91,8 +91,7 @@ public class SessionController {
       this.removeSession(session);
       System.out.println("Updating session for " + session.getUser().getId());
       newSession = createSession(session.user);
-    }
-    else{
+    } else {
       System.out.println("No session for " + session.getUser().toString());
     }
     return newSession;
@@ -100,9 +99,9 @@ public class SessionController {
 
   @RequestMapping("/logout")
   Session logout(@Valid @RequestBody Session session) {
-    if(SessionsInMemory.sessions.size() > 0){
+    if (SessionsInMemory.sessions.size() > 0) {
       this.removeSession(session);
-      System.out.println("User "+ session.getUser().getName() + " logged out");
+      System.out.println("User " + session.getUser().getName() + " logged out");
     }
     return new Session();
   }

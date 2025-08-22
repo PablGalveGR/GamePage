@@ -1,4 +1,9 @@
-<h2>Comments <span (click)="showComments()"> Show comments </span> <span>Add comment</span></h2>
+<h2>Comments <span (click)="showComments()"> Show comments </span>
+</h2>
+<form *ngIf="checkIfSession()">
+  <label>Commenting as {{getName(getUser())}}</label>
+  <input type="text" name="comment" placeholder="Write your comment">
+</form>
 <ul *ngIf="commentsGUI">
   <li class="comment" *ngFor="let comment of comments | async">
     <h3 class="commentUser">{{getName(comment.username)}} <span>{{comment.date}}</span></h3>

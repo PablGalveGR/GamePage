@@ -61,7 +61,7 @@ public class UserController {// Never return the password to the Client
   // Update
   @ResponseStatus(HttpStatus.ACCEPTED)
   @PutMapping("update/{id}")
-  void updateRun(@Valid @RequestBody User user, @PathVariable int id) {
+  void updateUser(@Valid @RequestBody User user, @PathVariable int id) {
     // log.info(user.toString());
     userRepository.updateUser(user, id);
   }
@@ -69,7 +69,7 @@ public class UserController {// Never return the password to the Client
   // Delete
   @ResponseStatus(HttpStatus.ACCEPTED)
   @DeleteMapping("delete/{id}")
-  void deleteRun(@Valid @PathVariable int id) {
+  void deleteUser(@Valid @PathVariable int id) {
     userRepository.deleteUser(id);
   }
 }

@@ -17,7 +17,7 @@ import { UserService } from './services/user/user.service';
 export class AppComponent {
   constructor(private router: Router, private userService: UserService, private loginService: LoginService, private signUpService: SignUpService) { }
   title = 'GeekyVerse';
-  login_: boolean = false;
+  logged: boolean = false;
   signUpForm: boolean = false;
   loginForm: boolean = false;
   request: User = {
@@ -31,11 +31,11 @@ export class AppComponent {
     id: 0
   };
   ngOnInit() {
-    this.checkSession();
+    //this.checkSession();
   }
   goTo(url: string) {
     this.router.navigate([url]);
-    this.checkSession();
+    //this.checkSession();
   }
   showFormLog() {
     this.loginForm = !this.loginForm;
@@ -67,60 +67,15 @@ export class AppComponent {
     return error;
 
   }
-  login(): string {
-    let error: string = "";
-    if (this.checkForms(this.request)) {
+  login(){
+    if(this.checkForms(this.request)){
       this.loginService.login(this.request).subscribe(response => {
-        if (response) {
-          console.log(response.token);
-          if (response.user && response.user.name == this.request.name) {
-            //Save the session into the client server
-            sessionStorage.setItem(response.user.id.toString(), response.token);
-            console.log("Session initialized :" + response.user.name);
-          }
-        }
-        else {
-          console.log("No response");
-        }
-        this.request.name = "";
-        this.request.passwd = "";
-      });
-      console.log("User " + this.request.name + '|' + this.request.passwd);
-      this.login_ = true;
-      this.showFormLog();
-    }
-    else {
-      error = "Password or username missing";
-    }
-    return error;
-  }
-  logout() {
-    if (sessionStorage.length > 0) {
-      this.loginService.logout().subscribe(session => {
-        this.login_ = false;
-        sessionStorage.clear();
-      });
-    }
-  }
-  checkSession(): boolean {
-    this.login_ = false;
-    if (sessionStorage.length > 0) {
-      this.loginService.checkLogin().subscribe(session => {
-        if (session.token != '' && session.token.length > 0) {
-          if (parseInt(sessionStorage.key(0)!) == session.user.id) {
-            sessionStorage.setItem(session.user.id.toString(), session.token);
-            this.login_ = true;
-            console.log("Session for " + session.user.id + " correct and updated");
-          }
-        }
-        else {
-          sessionStorage.clear();
-          console.log("Session for " + session.user.id + " closed due to incorreect match");
-          this.login_ = false;
+        if(response.user.name == this.request.name){
+          console.log("New session for :"+ response.user.name);
+          
         }
       });
-    }
-    return this.login_;
+    }this.logged = true;
   }
   getUsername(): string {
     let id: number = parseInt(sessionStorage.key(0)!);
@@ -128,5 +83,26 @@ export class AppComponent {
     this.userService.getName(id).subscribe(user => { name = user.name });
     return name;
   }
+  /*checkSession(): boolean  {
+  /*this.login_ = false;
+  if (sessionStorage.length > 0) {
+    this.loginService.checkLogin().subscribe(session => {
+      if (session.token != '' && session.token.length > 0) {
+        if (parseInt(sessionStorage.key(0)!) == session.user.id) {
+          sessionStorage.setItem(session.user.id.toString(), session.token);
+          this.login_ = true;
+          console.log("Session for " + session.user.id + " correct and updated");
+        }
+      }
+      else {
+        sessionStorage.clear();
+        console.log("Session for " + session.user.id + " closed due to incorreect match");
+        this.login_ = false;
+      }
+    });
+  }
+  return this.login_;
+}*/
+
 }
 
