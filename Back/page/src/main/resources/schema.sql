@@ -1,7 +1,7 @@
 CREATE TABLE USERS(
-   id int PRIMARY KEY AUTO_INCREMENT(4, 1),
+   id int PRIMARY KEY AUTO_INCREMENT(3, 1),
    name varchar(30) NOT NULL unique,
-   passwd varchar(150) NOT NULL
+   passwd varchar(150)
 );
 CREATE TABLE GAME(
    id int auto_increment PRIMARY KEY,
@@ -25,7 +25,3 @@ CREATE TABLE COMMENT(
    comment text,
    date datetime
 );
-CREATE TABLE TAG(
-   id int auto_increment PRIMARY KEY,
-   tag varchar(10)
-)

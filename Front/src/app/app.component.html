@@ -24,9 +24,9 @@
       </form>
     </li>
     <li *ngIf="logged">
-      {{getUsername()}}
+      {{request.name}}
       <ul>
-        <li>Logout</li>
+        <li (click) = "logout()">Logout</li>
       </ul>
     </li>
 

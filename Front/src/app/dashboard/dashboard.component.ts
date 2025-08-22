@@ -21,10 +21,7 @@ export class DashboardComponent {
     this.getGames();
   }
   getGames() {
-    this.gameService.getGames().subscribe(games => {this.games = games; this.AllGames = games });
-  }
-  getGamesByName(name : string){
-    this.games = this.gameService.getGamesByName(name, this.games);
+    this.gameService.getGames().subscribe(games => { this.games = games; this.AllGames = games });
   }
   goToDetail(id: number) {
     this.router.navigate(['/game/' + id]);
@@ -34,15 +31,16 @@ export class DashboardComponent {
     this.games = this.games.filter(i => i.name.toLowerCase().includes(text.toLowerCase()));
     console.log("Filtered :" + JSON.stringify(this.games));
     console.log("No Filtered :" + JSON.stringify(this.AllGames));
-    if(this.games.length == 0){
+    if (this.games.length == 0) {
       console.log("No games found");
     }
   }
-  clearFilter(filter? : HTMLInputElement) {
-    if(filter){
+  clearFilter(filter?: HTMLInputElement) {
+    if (filter) {
       filter.value = "";
     }
     this.filterBy("");
   }
+
 
 }

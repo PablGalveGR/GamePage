@@ -22,28 +22,31 @@ public class SessionController {
   }
 
   @RequestMapping("")
-  Session doLogin( @Valid @RequestBody User user) {
+  Session doLogin(@Valid @RequestBody User user) {
     Session session = new Session();
-    /*Optional<User> login = this.userRepository.getUserByName(user.getName());
-    
-    if (login.isPresent() && (!user.getPasswd().isBlank() || !user.getPasswd().isEmpty())) {
+    Optional<User> login = this.userRepository.getUserByName(user.getName());
+
+    if (login.isPresent() && (!user.getPasswd().isBlank() ||
+        !user.getPasswd().isEmpty())) {
       System.out.println("User " + user.getName() + " trying to login");
       if (login.get().getPasswd().equals(user.getPasswd())) {
-        /* If both passwords good: 
+        // If both passwords good:
         session = createSession(user);
-        System.out.println("New session for user: " + user.getName() + " with token :" + session.getToken());
+        System.out.println("New session for user: " + user.getName() +
+            " with token :" + session.getToken());
       } else {
         session.setToken("Password incorrect");
       }
     } else {
       if ((user.getPasswd().isBlank() || user.getPasswd().isEmpty())) {
         session.setToken("Password is null");
-        System.out.println("User " + user.getName() + " no password sent from the client");
+        System.out.println("User " + user.getName() +
+            " no password sent from the client");
       } else {
         System.out.println("User " + user.getName() + " does not exist");
         session.setToken("User " + user.getName() + " does not exist");
       }
-    }*/
+    }
     return session;
   }
 
@@ -78,21 +81,21 @@ public class SessionController {
       int index = sessionFound.keySet().iterator().next();
       SessionsInMemory.sessions.remove(index);
     } else {
-
     }
     return session;
   }
 
   @RequestMapping("/check")
   Session checkSession(@Valid @RequestBody Session session) {
-    System.out.println("Checking session for " + session.getUser().getId());
+    System.out.println("Checking session for " + session.getUser().getName());
     Session newSession = new Session();
-    if (SessionsInMemory.sessions.size() > 0 && !this.findSession(session).isEmpty()) {
+    if (SessionsInMemory.sessions.size() > 0) {
       this.removeSession(session);
       System.out.println("Updating session for " + session.getUser().getId());
       newSession = createSession(session.user);
     } else {
       System.out.println("No session for " + session.getUser().toString());
+
     }
     return newSession;
   }
