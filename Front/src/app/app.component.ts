@@ -31,8 +31,7 @@ export class AppComponent {
     id: 0
   };
   ngOnInit() {
-    this.checkSession();
-
+    sessionStorage.clear;
   }
   goTo(url: string) {
     this.router.navigate([url]);
@@ -46,7 +45,7 @@ export class AppComponent {
     this.signUpForm = !this.signUpForm;
     this.request.passwd = "";
   }
-  checkForms(fields : User) : boolean{
+  checkForms(fields: User): boolean {
     return fields.name.length > 0 && fields.passwd.length > 0;
   }
   createUser(): string {

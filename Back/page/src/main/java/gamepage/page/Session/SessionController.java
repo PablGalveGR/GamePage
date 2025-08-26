@@ -1,6 +1,8 @@
 package gamepage.page.Session;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,15 +27,19 @@ public class SessionController {
   Session doLogin(@Valid @RequestBody User user) {
     Session session = new Session();
     Optional<User> login = this.userRepository.getUserByName(user.getName());
-
     if (login.isPresent() && (!user.getPasswd().isBlank() ||
         !user.getPasswd().isEmpty())) {
       System.out.println("User " + user.getName() + " trying to login");
       if (login.get().getPasswd().equals(user.getPasswd())) {
         // If both passwords good:
-        session = createSession(user);
-        System.out.println("New session for user: " + user.getName() +
-            " with token :" + session.getToken());
+        // Look for an already openned session for this user
+        Session[] sessionsFound = findSessionsForUser(user.getName());
+        if (sessionsFound.length > 0) {
+          session = updateSession(user, sessionsFound);
+        } else {
+          session = createSession(user);
+        }
+
       } else {
         session.setToken("Password incorrect");
       }
@@ -56,8 +62,24 @@ public class SessionController {
     session.setToken(session.newToken());
     // Save Session
     SessionsInMemory.addSession(session);
-    System.out.println("Added session for " + user.getName());
+    System.out.println("New session for user: " + user.getName() +
+        " with token :" + session.getToken());
     System.out.println("All sessions : " + SessionsInMemory.getSessionsInMemory().toString());
+    return session;
+  }
+
+  Session updateSession(User user, Session[] sessions) {
+    Session session = new Session();
+    boolean removingSessions = false;
+    for (Session session_ : sessions) {
+      Session removed = removeSession(session_);
+      removingSessions = removed != null;
+    }
+    if (removingSessions) {
+      System.out.println("Updating session");
+      session = createSession(user);
+    }
+
     return session;
   }
 
@@ -68,11 +90,21 @@ public class SessionController {
           && session_.getToken().equals(session.getToken())) {
         System.out.println("Session found for " + session.getUser().getName());
         res.put(SessionsInMemory.sessions.indexOf(session_), true);
-        System.out.println("Updating session for " + session.getUser().getName());
-
       }
     }
     return res;
+  }
+
+  Session[] findSessionsForUser(String username) {
+    List<Session> sessionsFound = new ArrayList<>();
+    for (Session session_ : SessionsInMemory.sessions) {
+      if (session_.user.getName().equals(username)) {
+        sessionsFound.add(session_);
+      }
+    }
+    Session[] sessions = new Session[sessionsFound.size()];
+    sessions = sessionsFound.toArray(sessions);
+    return sessions;
   }
 
   Session removeSession(Session session) {
