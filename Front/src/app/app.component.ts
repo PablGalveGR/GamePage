@@ -31,7 +31,10 @@ export class AppComponent {
     id: 0
   };
   ngOnInit() {
-    sessionStorage.clear;
+    this.logout();
+  }
+  ngOnDestroy(){
+    this.logout();
   }
   goTo(url: string) {
     this.router.navigate([url]);

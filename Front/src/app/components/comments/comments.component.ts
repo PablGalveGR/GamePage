@@ -64,8 +64,8 @@ export class CommentsComponent {
       this.commentService.addComment(this.newComment);
     }
   }
-  getUser() : number{
-    return parseInt(sessionStorage.key(0)!);
+  getUser() : string{
+    return sessionStorage.key(0)!;
   }
   getName(id: number): String {
     let name: String = "";
