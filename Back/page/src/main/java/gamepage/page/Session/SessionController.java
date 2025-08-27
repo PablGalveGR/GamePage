@@ -1,7 +1,6 @@
 package gamepage.page.Session;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +23,7 @@ public class SessionController {
   }
 
   @RequestMapping("")
+  // Logs a user creating a session, chekcs password and user
   Session doLogin(@Valid @RequestBody User user) {
     Session session = new Session();
     Optional<User> login = this.userRepository.getUserByName(user.getName());
@@ -33,7 +33,7 @@ public class SessionController {
       if (login.get().getPasswd().equals(user.getPasswd())) {
         // If both passwords good:
         // Look for an already openned session for this user
-        Session[] sessionsFound = findSessionsForUser(user.getName());
+        Integer[] sessionsFound = findSessionsForUser(user.getName());
         if (sessionsFound.length > 0) {
           session = updateSession(user, sessionsFound);
         } else {
@@ -41,101 +41,104 @@ public class SessionController {
         }
 
       } else {
-        session.setToken("Password incorrect");
+        System.out.println("Password not correct");
       }
     } else {
       if ((user.getPasswd().isBlank() || user.getPasswd().isEmpty())) {
-        session.setToken("Password is null");
         System.out.println("User " + user.getName() +
             " no password sent from the client");
       } else {
         System.out.println("User " + user.getName() + " does not exist");
-        session.setToken("User " + user.getName() + " does not exist");
       }
     }
     return session;
   }
 
+  // Creates and storages a session for a user
   Session createSession(User user) {
     Session session = new Session();
-    session.setUser(user);
-    session.setToken(session.newToken());
-    // Save Session
-    SessionsInMemory.addSession(session);
-    System.out.println("New session for user: " + user.getName() +
-        " with token :" + session.getToken());
+    if (!user.getName().isEmpty() || user.getName().length() > 0) {
+      session.setUser(user);
+      session.setToken(session.newToken());
+      // Save Session
+      SessionsInMemory.addSession(session);
+      System.out.println("New session for user: " + user.getName() +
+          " with token :" + session.getToken());
+    }
+    else {
+      System.out.println("User is empty");
+    }
+
     System.out.println("All sessions : " + SessionsInMemory.getSessionsInMemory().toString());
     return session;
   }
 
-  Session updateSession(User user, Session[] sessions) {
+  // Updates the session for a user, all the sessions in storage are needed
+  Session updateSession(User user, Integer[] sessions) {
     Session session = new Session();
     boolean removingSessions = false;
-    for (Session session_ : sessions) {
-      Session removed = removeSession(session_);
-      removingSessions = removed != null;
-    }
+    Integer[] removed = removeSessions(sessions);
+    removingSessions = removed.length > 0;
     if (removingSessions) {
       System.out.println("Updating session");
       session = createSession(user);
     }
-
     return session;
   }
 
-  HashMap<Integer, Boolean> findSession(Session session) {
-    HashMap<Integer, Boolean> res = new HashMap<>();
-    for (Session session_ : SessionsInMemory.sessions) {
-      if (session_.user.getName().equals(session.getUser().getName())
-          && session_.getToken().equals(session.getToken())) {
-        System.out.println("Session found for " + session.getUser().getName());
-        res.put(SessionsInMemory.sessions.indexOf(session_), true);
-      }
-    }
-    return res;
-  }
-
-  Session[] findSessionsForUser(String username) {
-    List<Session> sessionsFound = new ArrayList<>();
+  // Finds all sessions given a user and return an array with her indexes
+  Integer[] findSessionsForUser(String username) {
+    List<Integer> sessionsFound = new ArrayList<>();
     for (Session session_ : SessionsInMemory.sessions) {
       if (session_.user.getName().equals(username)) {
-        sessionsFound.add(session_);
+        sessionsFound.add(SessionsInMemory.sessions.indexOf(session_));
       }
     }
-    Session[] sessions = new Session[sessionsFound.size()];
+    Integer[] sessions = new Integer[sessionsFound.size()];
     sessions = sessionsFound.toArray(sessions);
     return sessions;
   }
 
-  Session removeSession(Session session) {
-    HashMap<Integer, Boolean> sessionFound = findSession(session);
-    if (sessionFound.size() > 0) {
-      int index = sessionFound.keySet().iterator().next();
-      SessionsInMemory.sessions.remove(index);
+  // Removes all sessions corresponding to the inputed indexes
+  Integer[] removeSessions(Integer[] sessionsIndex) {
+    if (sessionsIndex.length > 0) {
+      for (int index : sessionsIndex) {
+        SessionsInMemory.sessions.remove(index);
+      }
     } else {
+      System.out.println("No session found");
     }
-    return session;
+    return sessionsIndex;
   }
 
   @RequestMapping("/check")
+  // Cheks for the recieved session
   Session checkSession(@Valid @RequestBody Session session) {
     System.out.println("Checking session for " + session.getUser().getName());
-    Session newSession = new Session();
-    if (SessionsInMemory.sessions.size() > 0) {
-      this.removeSession(session);
-      System.out.println("Updating session for " + session.getUser().getId());
-      newSession = createSession(session.user);
+    Session updatedSession = new Session();
+    Integer[] sessionsFound = findSessionsForUser(session.getUser().getName());
+    if (SessionsInMemory.sessions.size() > 0 && sessionsFound.length > 0) {
+      boolean matchingSession = false;
+      for (Integer index : sessionsFound) {// look for a matching username and token session in storage
+        matchingSession = SessionsInMemory.sessions.get(index).getToken().equals(session.getToken())
+            && SessionsInMemory.sessions.get(index).getUser().getName().equals(session.getUser().getName());
+        if (matchingSession) {
+          updatedSession = updateSession(session.getUser(), sessionsFound);
+          System.out.println("Updating session for " + session.getUser().getId());
+          break;
+        }
+      }
     } else {
       System.out.println("No session for " + session.getUser().toString());
-
     }
-    return newSession;
+    return updatedSession;
   }
 
   @RequestMapping("/logout")
+  // Deletes all sessions from a user
   Session logout(@Valid @RequestBody Session session) {
     if (SessionsInMemory.sessions.size() > 0) {
-      this.removeSession(session);
+      removeSessions(findSessionsForUser(session.getUser().getName()));
       System.out.println("User " + session.getUser().getName() + " logged out");
     }
     return new Session();

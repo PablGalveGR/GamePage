@@ -1,10 +1,11 @@
 /*Comments*/
 h2 {
-  font-size: 2rem;
+  font-size: 2.3rem;
   margin-bottom: 1rem;
 }
-h3{
-  font-size: 1.5rem;
+
+h3 {
+  font-size: 1.7rem;
 }
 
 h2 span {
@@ -29,5 +30,39 @@ ul li {
 }
 
 ul li p.commentBody {
+  font-size: 1.5rem;
+}
+/*Form*/
+form button {
   font-size: 1.2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  border-color: rgba(0, 0, 0, 0);
+  background-color: var(--secondaryColor);
+  margin-left: 75%;
+}
+form button:hover{
+  border-color: var(--hightLightColor);
+  background-color: var(--mainColor);
+  cursor: pointer;
+}
+/*Input text*/
+form label {
+  font-size: 1.2rem;
+}
+
+form input {
+  width: 100%;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  border-color: rgba(0, 0, 0, 0);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+form input:hover{
+  border-color: var(--hightLightColor);
+}
+form input:focus{
+  border-color: var(--secondaryColor);
 }

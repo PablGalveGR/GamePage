@@ -74,6 +74,7 @@ export class AppComponent {
           //Save the session into the client server
           sessionStorage.setItem(response.user.name, response.token);
           console.log("Session initialized :" + response.user.name);
+          this.logged = true;
         }
       }
       else {
@@ -81,7 +82,6 @@ export class AppComponent {
       }
     });
     console.log("User " + this.request.name + '|' + this.request.passwd);
-    this.logged = true;
     this.showFormLog();
   }
 
@@ -94,27 +94,20 @@ export class AppComponent {
       });
     }
   }
-  /*getUsername(): string {
-    let id: number = parseInt(sessionStorage.key(0)!);
-    let name: string = "AAAAAA";
-    //this.userService.getName(id).subscribe(user => { name = user.name });
-    return name;
-  }*/
   checkSession(): boolean {
-    this.logged = false;
+    //this.logged = false;
     if (sessionStorage.length > 0) {
       this.loginService.checkLogin().subscribe(session => {
         if (session.token != '' && session.token.length > 0) {
-          if (parseInt(sessionStorage.key(0)!) == session.user.id) {
+          if (sessionStorage.key(0)! == session.user.name) {
             sessionStorage.setItem(session.user.id.toString(), session.token);
             this.logged = true;
             console.log("Session for " + session.user.id + " correct and updated");
           }
         }
         else {
-          sessionStorage.clear();
+          this.logout();
           console.log("Session for " + session.user.id + " closed due to incorreect match");
-          this.logged = false;
         }
       });
     }

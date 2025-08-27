@@ -3,6 +3,7 @@
 <form *ngIf="checkIfSession()">
   <label>Commenting as {{getUser()}}</label>
   <input type="text" name="comment" placeholder="Write your comment">
+  <button>Post comment</button>
 </form>
 <ul *ngIf="commentsGUI">
   <li class="comment" *ngFor="let comment of comments | async">

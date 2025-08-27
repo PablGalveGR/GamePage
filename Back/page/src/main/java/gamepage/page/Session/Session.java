@@ -43,7 +43,7 @@ public class Session {
   public String toString() {
     return "{" +
         " user='" + getUser() + "'" +
-        ", session='" + getToken() + "'" +
+        ", token='" + getToken() + "'" +
         "}";
   }
 
