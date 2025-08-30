@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
+
 @CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @RestController
 @RequestMapping("/api/users") // General path that invokes this controller
@@ -50,6 +51,15 @@ public class UserController {// Never return the password to the Client
     }
     return opUser.get();
   }
+  @GetMapping("/name/{name}")
+  long findOneUserByName(@PathVariable String name) {
+    Optional<User> opUser = userRepository.getUserByName(name);
+    if (opUser.isEmpty()) {
+      // throw new RunNotFoundException();
+    }
+    return opUser.get().getId();
+  }
+  
 
   // Create
   @ResponseStatus(HttpStatus.CREATED)

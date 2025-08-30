@@ -21,7 +21,7 @@ export class CommentService {
     return this.httpClient.get<Comment[]>(ROUTE + '/api/comments/game/' + game);
   }
   addComment(comment : Comment){
-    return this.httpClient.post(ROUTE + '/api/comments/add', comment);
+    return this.httpClient.post<Comment>(ROUTE + '/api/comments', comment);
   }
   
 }

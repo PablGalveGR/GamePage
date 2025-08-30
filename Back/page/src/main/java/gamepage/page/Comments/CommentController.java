@@ -1,4 +1,5 @@
 package gamepage.page.Comments;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,8 @@ public class CommentController {//Never return the password to the Client
  // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void createRun(@Valid @RequestBody Comment comment) {
+  void createComment(@Valid @RequestBody Comment comment) {
+    System.out.println("Adding comment for " + comment.getGame() + " from user " + comment.getUsername());
     commentRepository.createComment(comment);
   }
 

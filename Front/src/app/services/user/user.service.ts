@@ -14,9 +14,9 @@ export class UserService {
   getUsernames(): Observable<User[]> {
     return this.httpClient.get<User[]>(ROUTE + '/api/users');
   }
-  /*getUsernames(): Observable<User[]> {
-    return of(this.users);
-  }*/
+  getUserbyName(name : string) : Observable<number>{
+    return this.httpClient.get<number>(ROUTE + "/api/users/name/" + name);
+  }
   getUser(id: number): Observable<User> {
     return this.httpClient.get<User>(ROUTE + '/api/users/' + id);
   }

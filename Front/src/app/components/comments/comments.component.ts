@@ -8,11 +8,13 @@ import { User } from '../user/User';
 import { Comment } from './Comment';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { CommentService } from '../../services/comment/comment.service';
+import { UserService } from '../../services/user/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe],
+  imports: [NgIf, NgFor, AsyncPipe, FormsModule],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css'
 })
@@ -21,7 +23,8 @@ export class CommentsComponent {
     private gameService: GameService,
     private router: Router,
     private route: ActivatedRoute,
-    private commentService: CommentService) { }
+    private commentService: CommentService,
+    private userService: UserService) { }
   @Input() game?: Game;
   @Input() users?: Set<User>;
   comments: Observable<Comment[]> = new Observable;
@@ -56,15 +59,17 @@ export class CommentsComponent {
   shortCommentsByDate(comments: Comment[]): Comment[] {
     return comments.sort((c1, c2) => <any>new Date(c1.date) - <any>new Date(c2.date));
   }
-  addComment(text: string) {
+  addComment() {
     if (this.checkIfSession()) {
       this.newComment.id = 0;
       this.newComment.game = this.gameId;
-      this.newComment.username = parseInt(sessionStorage.key(0)!);
-      this.commentService.addComment(this.newComment);
+      this.userService.getUserbyName(sessionStorage.key(0)!).subscribe(id => {
+        this.newComment.username = id;
+        this.commentService.addComment(this.newComment);
+      });
     }
   }
-  getUser() : string{
+  getUser(): string {
     return sessionStorage.key(0)!;
   }
   getName(id: number): String {

@@ -17,7 +17,7 @@ public class CommentRepository {
 
   // Insert querys
   public int createComment(Comment comment) {
-    String query = "INSERT INTO Comment " + "( game, username, comment, stamp)"
+    String query = "INSERT INTO Comment " + "( game, username, comment, date)"
         + " VALUES( ?, ?, ?, ?);";
     var updated = jdbcClient.sql(query)
         .params(List.of(comment.getGame(),comment.getUsername(), comment.getComment(), comment.getDate())).update();
@@ -31,7 +31,7 @@ public class CommentRepository {
     if (comment.getId() == id) {
       Optional<Comment> existingComment = getCommentById(id);
       if (existingComment.isPresent()) {
-        String query = "UPDATE Comment SET game = ? , username = ?, comment = ?, stamp = ? WHERE id = ?;";
+        String query = "UPDATE Comment SET game = ? , username = ?, comment = ?, date = ? WHERE id = ?;";
         var updated = jdbcClient.sql(query)
             .params(List.of(comment.getGame(),comment.getUsername(),comment.getComment(), comment.getDate() ))
             .update();

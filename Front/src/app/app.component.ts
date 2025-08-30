@@ -98,7 +98,7 @@ export class AppComponent {
     //this.logged = false;
     if (sessionStorage.length > 0) {
       this.loginService.checkLogin().subscribe(session => {
-        if (session.token != '' && session.token.length > 0) {
+        if (session.token != '' || session.token.length > 0) {
           if (sessionStorage.key(0)! == session.user.name) {
             sessionStorage.setItem(session.user.id.toString(), session.token);
             this.logged = true;
