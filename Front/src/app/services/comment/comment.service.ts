@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Game } from '../../components/game/Game';
 import { Observable, of } from 'rxjs';
-import { User } from '../../components/user/User';
-import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Comment } from '../../components/comments/Comment';
 import { ROUTE } from '../ROUTE';
@@ -20,7 +17,7 @@ export class CommentService {
   getCommentsByGame(game :number): Observable<Comment[]>{
     return this.httpClient.get<Comment[]>(ROUTE + '/api/comments/game/' + game);
   }
-  addComment(comment : Comment){
+  addComment(comment : Comment) : Observable<any>{
     return this.httpClient.post<Comment>(ROUTE + '/api/comments', comment);
   }
   

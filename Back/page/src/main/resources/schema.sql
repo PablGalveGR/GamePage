@@ -19,7 +19,7 @@ CREATE TABLE SCORE(
    FOREIGN KEY(username) REFERENCES USERS(id)
 );
 CREATE TABLE COMMENT(
-   id int auto_increment PRIMARY KEY,
+   id int auto_increment(8,1) PRIMARY KEY,
    game int NOT NUll,
    username int NOT NULL,
    comment text,

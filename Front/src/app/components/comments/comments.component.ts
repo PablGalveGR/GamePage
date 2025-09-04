@@ -57,15 +57,21 @@ export class CommentsComponent {
     });
   }
   shortCommentsByDate(comments: Comment[]): Comment[] {
-    return comments.sort((c1, c2) => <any>new Date(c1.date) - <any>new Date(c2.date));
+    return comments.sort((c1, c2) => <any>new Date(c2.date) - <any>new Date(c1.date));
   }
   addComment() {
     if (this.checkIfSession()) {
       this.newComment.id = 0;
       this.newComment.game = this.gameId;
+      this.newComment.date = new Date();
       this.userService.getUserbyName(sessionStorage.key(0)!).subscribe(id => {
         this.newComment.username = id;
-        this.commentService.addComment(this.newComment);
+        this.commentService.addComment(this.newComment).subscribe(a =>{
+          //Reset comments
+          this.newComment.comment = "";
+          this.newComment.username = 0;
+          this.getComments();
+        });
       });
     }
   }
