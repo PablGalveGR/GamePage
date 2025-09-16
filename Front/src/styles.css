@@ -43,7 +43,7 @@ div.mainContent h4 {
   font-size: 1.2rem;
 }
 /*Search Bar*/
-div.searchBar{
+/*div.searchBar{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -54,8 +54,8 @@ div.searchBar input.bar{
 }
 div.searchBar i{
   margin: 0rem 0.25rem;
-}
-/*headers*/
+}*/
+/*Headers*/
 div.header{
   display: flex;
   justify-content: space-between;

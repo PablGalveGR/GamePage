@@ -1,0 +1,25 @@
+div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
+li {
+  list-style: none;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: white;
+}
+li:hover {
+  background-color: var(--secondaryColor);
+  cursor: pointer;
+}
+h1:hover{
+  color:black;
+  background-color: var(--secondaryColor);
+  cursor: pointer;
+}
+/*Events click*/
+#login > * , #signUp > * {
+    pointer-events: none;
+}

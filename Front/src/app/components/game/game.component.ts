@@ -9,11 +9,12 @@ import { AsyncPipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { Comment } from '../comments/Comment';
 import { CommentsComponent } from '../comments/comments.component';
+import { ScoreComponent } from '../score/score.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, CommentsComponent],
+  imports: [NgIf, NgFor, AsyncPipe, CommentsComponent, ScoreComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
@@ -25,17 +26,10 @@ export class GameComponent {
   users: Set<User> = new Set();
   private id: number = Number(this.route.snapshot.paramMap.get('id'));
   commentsGUI: boolean = false;
-  newComment: Comment = {
-    id: 0,
-    game: this.id,
-    username: 0,
-    comment: "",
-    date: new Date()
-  };
   ngOnInit() {
     this.getGame();
-    this.getScores();
-    console.log("game component running")
+    //this.getScores();
+    console.log("game component running");
   }
   getGame(): void {
     this.gameService.getGame(this.id).subscribe(game => this.game = game)!;
@@ -54,7 +48,7 @@ export class GameComponent {
     }
     return name;
   }
-  getScores(): void {
+  /*getScores(): void {
     this.gameService.getScores(this.id).subscribe(async (scores) => {
       let users: Set<number> = new Set();
       for (let score of scores) {//gets all the users whom played the game
@@ -71,7 +65,7 @@ export class GameComponent {
       console.log("Scores for the game:" + this.game?.name + " retrieved");
       this.scores = of(scoreFiltered);
     });
-  }
+  }*/
   checkIfSession(): boolean {
     return sessionStorage.length > 0;
   }

@@ -1,0 +1,28 @@
+<div class="sessionContainer">
+  <li id="signUp" (click)="showFormSign()">Sign up</li>
+  <li *ngIf="signUpForm">
+    <form>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="name" [(ngModel)]=user.name required>
+      <label for="passwd">Password</label>
+      <input type="password" id="passwd" name="passwd" [(ngModel)]=user.passwd required>
+      <button type="submit" (click)="createUser()">Create</button>
+    </form>
+  </li>
+  <li id="login" (click)="showFormLog()" *ngIf="!logged">Login</li>
+  <li *ngIf="loginForm">
+    <form>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="name" [(ngModel)]=request.name required>
+      <label for="passwd">Password</label>
+      <input type="password" id="passwd" name="passwd" [(ngModel)]=request.passwd required>
+      <button type="submit" (click)="login()">Login</button>
+    </form>
+  </li>
+  <li *ngIf="logged">
+    {{request.name}}
+    <ul>
+      <li (click)="logout()">Logout</li>
+    </ul>
+  </li>
+</div>

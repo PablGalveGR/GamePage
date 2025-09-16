@@ -21,12 +21,12 @@ import { FormsModule } from '@angular/forms';
 export class CommentsComponent {
   constructor(
     private gameService: GameService,
-    private router: Router,
     private route: ActivatedRoute,
     private commentService: CommentService,
     private userService: UserService) { }
   @Input() game?: Game;
-  @Input() users?: Set<User>;
+  //@Input() users?: Set<User>;
+  users?: Set<User>;
   comments: Observable<Comment[]> = new Observable;
   private gameId: number = Number(this.route.snapshot.paramMap.get('id'));
   commentsGUI: boolean = false;

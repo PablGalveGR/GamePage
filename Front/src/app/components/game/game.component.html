@@ -1,9 +1,9 @@
 <div class="gameContainer" *ngIf="game">
   <div class="gameHeader">
-      <h2>{{game.name}}</h2>
-      <img src="{{game.portrait}}">
-      <button class="downloadGame">Download</button>
-    </div>
+    <h2>{{game.name}}</h2>
+    <img src="{{game.portrait}}">
+    <button class="downloadGame">Download</button>
+  </div>
   <div class="game">
     <div class="gameBody">
       <h2>Summary</h2>
@@ -11,25 +11,11 @@
         <p>{{game.description}}</p>
       </section>
       <section class="commentsContainer">
-        <app-comments [game] [users]/>
+        <app-comments [game] />
       </section>
     </div>
     <div class="scoreBoardContainer">
-      <h2>Scores</h2>
-      @defer{
-      <table class="scoreBoard">
-        <tr>
-          <td>Position</td>
-          <td>Username</td>
-          <td>Score</td>
-        </tr>
-        <tr *ngFor="let score of scores | async; let i = index">
-          <td>{{i+1}}</td>
-          <td>{{getName(score.username)}}</td>
-          <td>{{score.score}}</td>
-        </tr>
-      </table>
-      }
+      <app-score />
     </div>
   </div>
 </div>

@@ -1,0 +1,24 @@
+
+/*ScoreBoard*/
+h2 {
+  font-size: 5rem;
+}
+table.scoreBoard {
+  margin: 1rem 0;
+  border: 0.1rem solid var(--secondaryColor);
+  width: 100%;
+}
+
+table.scoreBoard tr#header {
+  background-color: var(--secondaryColor);
+  font-weight: bold;
+}
+
+table.scoreBoard tr:nth-child(even) {
+  background-color: var(--tableColor);
+}
+
+table.scoreBoard td {
+  font-size: 2rem;
+  padding: 1rem;
+}

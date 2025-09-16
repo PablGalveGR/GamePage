@@ -3,19 +3,20 @@ import { Router, RouterOutlet } from '@angular/router';
 import { LoginService } from './services/logIn/login.service';
 import { NgIf } from '@angular/common';
 import { User } from './components/user/User';
-import { SignUpService } from './services/signup/sign-up.service';
 import { FormsModule } from '@angular/forms';
-import { UserService } from './services/user/user.service';
+import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, FormsModule],
+  imports: [RouterOutlet, NgIf, FormsModule, SignupLoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private router: Router, private userService: UserService, private loginService: LoginService, private signUpService: SignUpService) { }
+  constructor(private router: Router,
+    private loginService: LoginService
+  ) { }
   title = 'GeekyVerse';
   logged: boolean = false;
   signUpForm: boolean = false;
@@ -33,58 +34,13 @@ export class AppComponent {
   ngOnInit() {
     this.logout();
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.logout();
   }
   goTo(url: string) {
     this.router.navigate([url]);
     this.checkSession();
   }
-  showFormLog() {
-    this.loginForm = !this.loginForm;
-    this.request.passwd = "";
-  }
-  showFormSign() {
-    this.signUpForm = !this.signUpForm;
-    this.request.passwd = "";
-  }
-  checkForms(fields: User): boolean {
-    return fields.name.length > 0 && fields.passwd.length > 0;
-  }
-  createUser(): string {
-    let error: string = "";
-    if (this.checkForms(this.user)) {
-      this.signUpService.createUser(this.user)
-      console.log("User sent " + this.user.name + '|' + this.user.passwd);
-      this.user.name = "";
-      this.user.passwd = "";
-      this.showFormSign();
-    }
-    else {
-      error = "Password or username missing";
-    }
-    return error;
-
-  }
-  login() {
-    this.loginService.login(this.request).subscribe(response => {
-      if (response) {
-        console.log(response.token);
-        if (response.user && response.user.name == this.request.name) {
-          //Save the session into the client server
-          sessionStorage.setItem(response.user.name, response.token);
-          console.log("Session initialized :" + response.user.name);
-          this.logged = true;
-        }
-      }
-      else {
-        console.log("No response");
-      }
-    });
-    console.log("User " + this.request.name + '|' + this.request.passwd);
-    this.showFormLog();
-  }
-
   logout() {
     if (sessionStorage.length > 0) {
       this.loginService.logout().subscribe(session => {
@@ -95,7 +51,6 @@ export class AppComponent {
     }
   }
   checkSession(): boolean {
-    //this.logged = false;
     if (sessionStorage.length > 0) {
       this.loginService.checkLogin().subscribe(session => {
         if (session.token != '' || session.token.length > 0) {
