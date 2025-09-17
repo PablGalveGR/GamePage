@@ -1,24 +1,31 @@
 
 /*ScoreBoard*/
-h2 {
-  font-size: 5rem;
+table *{
+  font-size: 1.2rem;
 }
 table.scoreBoard {
   margin: 1rem 0;
-  border: 0.1rem solid var(--secondaryColor);
+  border: 0.1rem solid black;
   width: 100%;
+  
 }
 
 table.scoreBoard tr#header {
-  background-color: var(--secondaryColor);
+  background-color: var(--hightLightColor);
   font-weight: bold;
 }
 
 table.scoreBoard tr:nth-child(even) {
-  background-color: var(--tableColor);
+  background-color: var(--secondaryColor);
 }
-
+table.scoreBoard tr:hover{
+  background-color: var(--hightLightColor);
+}
+table.scoreBoard td:hover{
+  cursor: default;
+}
 table.scoreBoard td {
-  font-size: 2rem;
   padding: 1rem;
+  border: 0.1rem solid black;
+  
 }

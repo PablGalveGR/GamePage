@@ -32,10 +32,16 @@ export class SignupLoginComponent {
   };
   showFormLog() {
     this.loginForm = !this.loginForm;
+    if(this.loginForm){
+      this.signUpForm = false;
+    }
     this.request.passwd = "";
   }
   showFormSign() {
     this.signUpForm = !this.signUpForm;
+    if(this.signUpForm){
+      this.loginForm = false;
+    }
     this.request.passwd = "";
   }
   checkForms(fields: User): boolean {

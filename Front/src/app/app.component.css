@@ -1,6 +1,6 @@
 /*Nav Styles*/
 nav.desktop {
-  background-color: rgb(41, 41, 41);
+  background-color: var(--navColor);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,10 +12,9 @@ nav.desktop {
 
 nav.desktop h1.title {
   color: var(--secondaryColor);
-  font-size: 2rem;
   padding-left: 1rem;
-  padding-bottom:2rem;
-  padding-top:2rem;
+  padding-bottom:1rem;
+  padding-top:1rem;
   flex: 2;
 }
 
@@ -30,15 +29,17 @@ nav.desktop ul li {
   list-style: none;
   padding: 2rem;
   font-size: 1.5rem;
-  color: white;
+  color: var(--secondaryColor);
+  font-weight: bold;
 }
 
 nav.desktop ul li:hover {
   background-color: var(--secondaryColor);
   cursor: pointer;
+  color: var(--contrastColor);
 }
 nav.desktop h1:hover{
-  color:black;
+  color:var(--contrastColor);
   background-color: var(--secondaryColor);
   cursor: pointer;
 }
@@ -70,7 +71,6 @@ nav.desktop h1:hover{
 
   nav.mobile h1.title {
     color: var(--secondaryColor);
-    font-size: 2rem;
   }
 
   nav.mobile ul {
@@ -87,7 +87,6 @@ nav.desktop h1:hover{
     width: 100%;
     list-style: none;
     padding: 2rem;
-    font-size: 1.5rem;
     color: white;
   }
   div.sideMenuRight{

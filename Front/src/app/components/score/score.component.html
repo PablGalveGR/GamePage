@@ -1,15 +1,15 @@
 <h2>Scores</h2>
 @defer{
 <table class="scoreBoard">
-  <tr>
+  <tr id="header">
     <td>Position</td>
     <td>Username</td>
     <td>Score</td>
   </tr>
   <tr *ngFor="let score of scores | async; let i = index">
-    <td>{{i+1}}</td>
-    <td>{{getName(score.username)}}</td>
-    <td>{{score.score}}</td>
+    <td><p>{{i+1}}</p></td>
+    <td><p>{{getName(score.username)}}</p></td>
+    <td><p>{{score.score}}</p></td>
   </tr>
 </table>
 }

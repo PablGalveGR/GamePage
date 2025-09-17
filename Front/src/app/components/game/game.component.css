@@ -1,40 +1,43 @@
 div.gameContainer {
-  background-color: chartreuse;
+  background-color: var(--backgroundColor);
   height: 100%;
 }
 
 div.gameContainer h2 {
-  font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-div.gameContainer h3 {
-  font-size: 2rem;
+div.gameHeader,
+div.gameBody {
+  display: flex;
 }
-
+/*Game*/
+div.game{
+  background-color: var(--mainColor);
+  margin: 0 20%;
+}
 /*Header*/
 div.gameHeader {
-  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
+  margin-bottom: 1rem;
 }
 
-div.gameHeader h2 {
+div.gameHeader h1 {
   text-align: center;
-  font-size: 5rem;
   margin-bottom: 2rem;
 }
 
 div.gameHeader img {
-  margin: 0% 25%;
-  width: 50%;
+  padding: 5% 15%;
+  width: 75%;
   height: auto;
+  background-color: var(--backgroundColor);
 }
 
 div.gameHeader button.downloadGame {
-  background-color: var(--secondaryColor);
-  color: var(--contentBackgroundColor);
+  background-color: var(--tertiaryColor);
   border: solid black 0.1rem;
   border-radius: 0.5rem;
   padding: 1rem 3rem;
@@ -43,10 +46,10 @@ div.gameHeader button.downloadGame {
 }
 
 div.gameHeader button.downloadGame:hover {
-  background-color: var(--contentBackgroundColor);
-  color: var(--secondaryColor);
+  background-color: var(--hightLightColor);
+  color: white;
   cursor: pointer;
-  border-color: var(--secondaryColor);
+  border-color: black;
 }
 
 /*Game body*/
@@ -55,13 +58,10 @@ div.gameContainer p {
 }
 
 div.gameContainer div.game {
-  display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: space;
-  margin: 0% 10%;
-  padding: 3rem;
-  background-color: yellow;
+  padding: 2rem;
 }
 
 div.gameContainer div.game div.gameBody section.gameDesc {
@@ -70,7 +70,8 @@ div.gameContainer div.game div.gameBody section.gameDesc {
 
 /*ScoreBoard*/
 div.scoreBoardContainer {
-  background-color: brown;
-  margin: 0rem 5rem;
-  padding: 0rem 3rem;
+  background-color: var(--tertiaryColor);
+  margin: 0rem;
+  margin-left: 3rem;
+  padding: 0rem 1rem;
 }

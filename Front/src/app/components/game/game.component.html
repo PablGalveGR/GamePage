@@ -1,21 +1,23 @@
 <div class="gameContainer" *ngIf="game">
-  <div class="gameHeader">
-    <h2>{{game.name}}</h2>
-    <img src="{{game.portrait}}">
-    <button class="downloadGame">Download</button>
-  </div>
   <div class="game">
-    <div class="gameBody">
-      <h2>Summary</h2>
-      <section class="gameDesc">
-        <p>{{game.description}}</p>
-      </section>
-      <section class="commentsContainer">
-        <app-comments [game] />
-      </section>
+    <div class="gameHeader">
+      <h1>{{game.name}}</h1>
+      <img src="{{game.portrait}}">
+      <button class="downloadGame">Download</button>
     </div>
-    <div class="scoreBoardContainer">
-      <app-score />
+    <div class="gameBody">
+      <div class="gameSummary">
+        <h2>Summary</h2>
+        <section class="gameDesc">
+          <p>{{game.description}}</p>
+        </section>
+        <section class="commentsContainer">
+          <app-comments [game] />
+        </section>
+      </div>
+      <div class="scoreBoardContainer">
+        <app-score />
+      </div>
     </div>
   </div>
 </div>

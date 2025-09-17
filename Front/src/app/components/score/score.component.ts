@@ -17,7 +17,7 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 export class ScoreComponent {
   constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
   @Input() game?: Game;
-  users!: Set<User>;
+  users: Set<User> = new Set;
   scores: Observable<Score[]> = new Observable;
   private gameId: number = Number(this.route.snapshot.paramMap.get('id'));
   ngOnInit() {

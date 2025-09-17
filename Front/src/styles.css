@@ -1,47 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
 
-:root{
-  --contentBackgroundColor: rgb(143, 0, 0);
-  --mainColor: rgb(255, 255, 247);
-  --secondaryColor: rgb(50, 50, 255);
-  --hightLightColor: rgb(0, 255, 21);
-  --tableColor:rgba(33, 158, 33, 0.186);
-  --tableHightLightColor: rgba(33, 158, 33, 0.549);
+:root {
+  --navColor: rgb(255, 222, 222);
+  --backgroundColor: rgb(255, 216, 208);
+  --mainColor: rgb(255, 192, 180);
+  --secondaryColor: rgb(255, 186, 83);
+  --tertiaryColor:rgb(255, 190, 143);
+  --hightLightColor: rgb(255, 0, 0);
+  --contrastColor: rgb(0, 0, 0);
 }
-html, *{
+
+html,
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-html{
+
+html {
   background-color: var(--mainColor);
 }
-body{
+
+body {
   height: 100%;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.7rem;
+}
+
 /*Main Content Styles*/
-div.mainContent{
-  background-color: var(--contentBackgroundColor);
+div.mainContent {
+  background-color: var(--backgroundColor);
   padding: 1rem;
   margin-left: 10%;
   margin-right: 0%;
   margin-top: 1%;
   height: 100%;
 }
-div.mainContent h2{
-  font-size: 2rem;
-}
-div.mainContent h3 {
-  font-size: 1.5rem;
+
+/*Icons Styles*/
+/* i.button {
+  background-color: var(--secondaryColor);
+  color: var(--backgroundColor);
+  border: solid black 0.1rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
 }
 
-div.mainContent h4 {
-  font-size: 1.2rem;
-}
+i.button:hover {
+  background-color: var(--backgroundColor);
+  color: var(--secondaryColor);
+  cursor: pointer;
+  border-color: var(--secondaryColor);
+} */
+
 /*Search Bar*/
 /*div.searchBar{
   display: flex;
@@ -56,7 +84,7 @@ div.searchBar i{
   margin: 0rem 0.25rem;
 }*/
 /*Headers*/
-div.header{
+/* div.header{
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -74,9 +102,9 @@ div.header #deleteIcon:hover{
   color: red;
   cursor: pointer;
   border-color: var(--secondaryColor);
-}
+} */
 /*Icons Styles*/
-i.button{
+/* i.button{
   background-color: var(--secondaryColor);
   color: var(--contentBackgroundColor);
   border: solid black 0.1rem;
@@ -113,10 +141,10 @@ i#veganIcon:hover i#veggieIcon, i#veganIcon{
   padding: 0.5rem;
   font-size: 1.25rem;
   cursor: auto;
-}
+} */
 
 /*tables*/
-table {
+/* table {
   margin: 1rem 0;
   border: 0.1rem solid var(--secondaryColor);
   width: 100%;
@@ -129,13 +157,15 @@ table tr:nth-child(even) {
   background-color: var(--tableColor);
 }
 /*TexAreas*/
+/*
 textarea{
   width: 100%;
   border-radius: 0.25rem;
   border: solid 0.025rem var(--secondaryColor);
-}
+} */
+
 /*Mobile*/
-@media only screen and (max-width: 1020px){
+/* @media only screen and (max-width: 1020px){
   html, *{
     box-sizing: border-box;
     margin: 0;
@@ -148,5 +178,4 @@ textarea{
     margin-right: 5%;
     margin-top: 1%;
   }
-}
-
+} */
