@@ -1,4 +1,5 @@
 package gamepage.page.Comments;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,54 +17,67 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/comments") // General path that invokes this controller
 @CrossOrigin
-public class CommentController {//Never return the password to the Client
+public class CommentController {// Never return the password to the Client
   private final CommentRepository commentRepository;
- public CommentController (CommentRepository commentReposijtory){
-  this.commentRepository = commentReposijtory;
- }
- /*private static final Logger log = LoggerFactory
-      .getLogger(Application.class);
-*/
- //Select
-@GetMapping("")
+
+  public CommentController(CommentRepository commentReposijtory) {
+    this.commentRepository = commentReposijtory;
+  }
+
+  /*
+   * private static final Logger log = LoggerFactory
+   * .getLogger(Application.class);
+   */
+  // Select
+  @GetMapping("")
   public List<Comment> findAllComments() {
     List<Comment> comments = commentRepository.getAllComments();
     System.out.println(comments.toString());
     return comments;
   }
-// General path plus an element to pass to the controller
-  @GetMapping("{id}") 
+
+  // General path plus an element to pass to the controller
+  @GetMapping("{id}")
   Comment findOneComment(@PathVariable int id) {
     Optional<Comment> opComment = commentRepository.getCommentById(id);
     if (opComment.isEmpty()) {
-      //throw new RunNotFoundException();
+      // throw new RunNotFoundException();
     }
     return opComment.get();
   }
-  @GetMapping("game/{id}") 
+
+  @GetMapping("game/{id}")
   List<Comment> findCommentByGame(@PathVariable int id) {
     List<Comment> opComment = commentRepository.getCommentsByGame(id);
     if (opComment.isEmpty()) {
-      //throw new RunNotFoundException();
+      // throw new RunNotFoundException();
     }
     return opComment;
   }
- // Create
+
+  // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
   void createComment(@Valid @RequestBody Comment comment) {
-    System.out.println("Adding comment for " + comment.getGame() + " from user " + comment.getUsername());
-    commentRepository.createComment(comment);
+    if (comment.getComment().length() != 0) {
+      System.out.println("Adding comment for " + comment.getGame() + " from user " + comment.getUsername());
+      commentRepository.createComment(comment);
+    }
+    else{
+      System.out.println("Comment from user " + comment.getUsername() + " was empty");
+    }
+
   }
 
   // Update
   @ResponseStatus(HttpStatus.ACCEPTED)
   @PutMapping("update/{id}")
   void updateRun(@Valid @RequestBody Comment comment, @PathVariable int id) {
-    //log.info(user.toString());
+    // log.info(user.toString());
     commentRepository.updateComment(comment, id);
   }
 

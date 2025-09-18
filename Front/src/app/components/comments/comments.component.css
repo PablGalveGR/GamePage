@@ -8,15 +8,17 @@ h3 {
   font-size: 1.7rem;
 }
 
-h2 span {
-  border: 0.2rem solid white;
+h2 span, button {
+  border: 0.2rem solid var(--contrastColor);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
-h2 span:hover {
+h2 span:hover, button:hover {
   cursor: pointer;
-  text-decoration: underline;
-  color: red;
-  border: 0.2rem solid black;
+  color: var(--hightLightColor);
+  border-color: var(--hightLightColor);
+  background-color: var(--backgroundColor);
 }
 
 ul {
@@ -34,17 +36,7 @@ ul li p.commentBody {
 }
 /*Form*/
 form button {
-  font-size: 1.2rem;
-  border-radius: 1rem;
-  padding: 1rem;
-  border-color: rgba(0, 0, 0, 0);
-  background-color: var(--secondaryColor);
   margin-left: 75%;
-}
-form button:hover{
-  border-color: var(--hightLightColor);
-  background-color: var(--mainColor);
-  cursor: pointer;
 }
 /*Input text*/
 form label {

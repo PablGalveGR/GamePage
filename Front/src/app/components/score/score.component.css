@@ -2,23 +2,27 @@
 /*ScoreBoard*/
 table *{
   font-size: 1.2rem;
+  font-weight: bold;
 }
 table.scoreBoard {
   margin: 1rem 0;
   border: 0.1rem solid black;
   width: 100%;
+  background-color: var(--mainColor);
+  border-collapse: collapse;
   
 }
 
 table.scoreBoard tr#header {
-  background-color: var(--hightLightColor);
+  background-color: var(--contrastColor);
   font-weight: bold;
+  color: var(--backgroundColor);
 }
 
-table.scoreBoard tr:nth-child(even) {
-  background-color: var(--secondaryColor);
-}
-table.scoreBoard tr:hover{
+/*table.scoreBoard tr.tbody:nth-child(odd) {
+  background-color: var(--tertiaryColor);
+}*/
+table.scoreBoard tr.tbody:hover{
   background-color: var(--hightLightColor);
 }
 table.scoreBoard td:hover{
@@ -27,5 +31,4 @@ table.scoreBoard td:hover{
 table.scoreBoard td {
   padding: 1rem;
   border: 0.1rem solid black;
-  
 }

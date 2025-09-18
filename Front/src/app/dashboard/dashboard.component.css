@@ -15,6 +15,7 @@ div.searchBar {
 div.searchBar input.bar {
   flex: 5;
   border-radius: 1rem;
+  font-size: 1.5rem;
 }
 div.searchBar i.button {
   background-color: var(--tertiaryColor);
@@ -30,7 +31,6 @@ div.searchBar i.button:hover {
   background-color: var(--hightLightColor);
   color: var(--contrastColor);
   cursor: pointer;
-  border-color: var(--secondaryColor);
 }
 /*Game boxes*/
 div.boxView {
@@ -42,7 +42,7 @@ div.boxView {
 
 div.boxView div.gameContainer {
   background-color: var(--mainColor);
-  border: 0.2rem, solid, var(--secondaryColor);
+  border: 0.3rem, solid, var(--tertiaryColor);
   flex: 20%;
   flex-grow: 1;
   border-radius: 0.5rem;
@@ -55,7 +55,7 @@ div.boxView div.gameContainer {
 }
 
 div.boxView div.gameContainer:hover {
-  border: 0.2rem solid var(--hightLightColor);
+  border-color: var(--hightLightColor);
   cursor: pointer;
 }
 

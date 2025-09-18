@@ -2,7 +2,7 @@
 </h2>
 <form *ngIf="checkIfSession()">
   <label>Commenting as {{getUser()}}</label>
-  <input type="text" name="comment" placeholder="Write your comment" [(ngModel)] = "newComment.comment">
+  <input type="text" name="comment" required placeholder="Write your comment" [(ngModel)] = "newComment.comment">
   <button (click) = "addComment()">Post comment</button>
 </form>
 <ul *ngIf="commentsGUI">

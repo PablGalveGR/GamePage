@@ -6,7 +6,7 @@
     <td>Username</td>
     <td>Score</td>
   </tr>
-  <tr *ngFor="let score of scores | async; let i = index">
+  <tr class="tbody" *ngFor="let score of scores | async; let i = index">
     <td><p>{{i+1}}</p></td>
     <td><p>{{getName(score.username)}}</p></td>
     <td><p>{{score.score}}</p></td>

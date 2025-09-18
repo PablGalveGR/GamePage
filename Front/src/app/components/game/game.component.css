@@ -30,8 +30,8 @@ div.gameHeader h1 {
 }
 
 div.gameHeader img {
-  padding: 5% 15%;
-  width: 75%;
+  padding: 5% 20%;
+  width: 100%;
   height: auto;
   background-color: var(--backgroundColor);
 }
@@ -70,7 +70,7 @@ div.gameContainer div.game div.gameBody section.gameDesc {
 
 /*ScoreBoard*/
 div.scoreBoardContainer {
-  background-color: var(--tertiaryColor);
+  /*background-color: var(--tertiaryColor);*/
   margin: 0rem;
   margin-left: 3rem;
   padding: 0rem 1rem;
