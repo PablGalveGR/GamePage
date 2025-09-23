@@ -32,7 +32,15 @@ export class GameComponent {
     console.log("game component running");
   }
   getGame(): void {
-    this.gameService.getGame(this.id).subscribe(game => this.game = game)!;
+    this.gameService.getGame(this.id).subscribe(game => {
+      this.game = game;
+      this.addPageVisits(this.game)
+    })!;
     console.log("Game :" + this.game?.name + " retrieved");
+  }
+  addPageVisits(game: Game) {
+    game.pageViews += 1;
+    this.gameService.updateVisits(game);
+    console.log("New visit for the game");
   }
 }

@@ -16,16 +16,26 @@ public class Game {
   private String path;
   private String description;
   private String portrait;
+  private long visits;
 
-  public Game(long id, String name, String path, String description, String portrait) {
+  public Game(long id, String name, String path, String description, String portrait, long visits) {
     this.id = id;
     this.name = name;
     this.path = path;
     this.description = description;
     this.portrait = portrait;
+    this.visits = visits;
   }
 
   public Game() {
+  }
+
+  public long getVisits() {
+    return this.visits;
+  }
+
+  public void setVisits(long visits) {
+    this.visits = visits;
   }
 
   public String getDescription() {

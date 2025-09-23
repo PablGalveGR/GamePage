@@ -8,7 +8,9 @@ CREATE TABLE GAME(
    name varchar(30) NOT NUll, 
    path varchar(150) unique,
    description varchar(1500),
-   portrait varchar(50)
+   portrait varchar(50),
+   pageViews int,
+   visits int
 );
 CREATE TABLE SCORE(
    id int auto_increment PRIMARY KEY,

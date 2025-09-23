@@ -41,4 +41,7 @@ export class GameService {
   getComments(id: number): Observable<Comment[]>{
     return this.commentService.getCommentsByGame(id);
   }
+  updateVisits(game : Game){
+    return this.httpClient.post<Game>(ROUTE + '/api/games', game);
+  }
 }

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { GameService } from '../services/game/game.service';
 import { Game } from '../components/game/Game';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -15,8 +15,8 @@ export class DashboardComponent {
   constructor(private gameService: GameService, private router: Router) {
 
   }
-  games!: Game[];
-  AllGames!: Game[];
+  games: Game[] = new Array<Game>;
+  AllGames: Game[] = new Array<Game>;
   ngOnInit() {
     this.getGames();
   }

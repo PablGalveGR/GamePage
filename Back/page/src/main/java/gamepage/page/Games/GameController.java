@@ -46,14 +46,14 @@ public class GameController {//Never return the password to the Client
  // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void createRun(@Valid @RequestBody Game game) {
+  void createGame(@Valid @RequestBody Game game) {
     gameRepository.createGame(game);
   }
 
   // Update
   @ResponseStatus(HttpStatus.ACCEPTED)
   @PutMapping("update/{id}")
-  void updateRun(@Valid @RequestBody Game game, @PathVariable int id) {
+  void updateGame(@Valid @RequestBody Game game, @PathVariable int id) {
     //log.info(user.toString());
     gameRepository.updateGame(game, id);
   }
@@ -61,7 +61,13 @@ public class GameController {//Never return the password to the Client
   // Delete
   @ResponseStatus(HttpStatus.ACCEPTED)
   @DeleteMapping("delete/{id}")
-  void deleteRun(@Valid @PathVariable int id) {
+  void deleteGame(@Valid @PathVariable int id) {
     gameRepository.deleteGame(id);
+  }
+  //Add page views
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  @PostMapping("/page")
+  void addPageView(@Valid @RequestBody Game game, long id) {
+    gameRepository.updateGamePageVisit(game, id);
   }
 }

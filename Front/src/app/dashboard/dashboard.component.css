@@ -32,6 +32,11 @@ div.searchBar i.button:hover {
   color: var(--contrastColor);
   cursor: pointer;
 }
+/*No games message*/
+.nogames{
+  text-align: center;
+  margin: 5% 25%;
+}
 /*Game boxes*/
 div.boxView {
   display: flex;

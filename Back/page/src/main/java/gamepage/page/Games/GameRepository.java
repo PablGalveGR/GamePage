@@ -18,8 +18,8 @@ public class GameRepository {
 
   // Insert querys
   public int createGame(Game game) {
-    String query = "INSERT INTO Game " + "( name, path, description, portrait)"
-        + " VALUES( ?, ?, ?, ?);";
+    String query = "INSERT INTO Game " + "( name, path, description, portrait, pageViews, visits)"
+        + " VALUES( ?, ?, ?, ?, ?, ?);";
     var updated = jdbcClient.sql(query)
         .params(List.of(game.getName(),game.getPath(), game.getPortrait())).update();
     Assert.state(updated == 1,
@@ -32,7 +32,20 @@ public class GameRepository {
     if (game.getId() == id) {
       Optional<Game> existingGame = getGameById(id);
       if (existingGame.isPresent()) {
-        String query = "UPDATE Game SET name = ? , path = ?, description = ?, portrait = ? WHERE id = ?;";
+        String query = "UPDATE Game SET name = ? , path = ?, description = ?, portrait = ?, pageviews = ?, visits = ? WHERE id = ?;";
+        var updated = jdbcClient.sql(query)
+            .params(List.of(game.getName(),game.getPath(),game.getPortrait(), game.getId() ))
+            .update();
+        Assert.state(updated == 1,
+            "Failed to Update Games: " + game.getName());
+      }
+    }
+  }
+  public void updateGamePageVisit(Game game, long id) {
+    if (game.getId() == id) {
+      Optional<Game> existingGame = getGameById(game.getId());
+      if (existingGame.isPresent()) {
+        String query = "UPDATE Game SET pageviews = ?, visits = ? WHERE id = ?;";
         var updated = jdbcClient.sql(query)
             .params(List.of(game.getName(),game.getPath(),game.getPortrait(), game.getId() ))
             .update();
@@ -64,7 +77,7 @@ public class GameRepository {
     return games;
   }
 
-  Optional<Game> getGameById(int id) {
+  Optional<Game> getGameById(long id) {
     String query = "SELECT * FROM Game WHERE id = :id;";
     Optional<Game> game = jdbcClient.sql(query).param("id", id)
         .query(Game.class).optional();
