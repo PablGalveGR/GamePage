@@ -5,5 +5,6 @@ export interface Game{
   path : string,
   portrait : string,
   pageViews : number,
-  visits : number
+  visits : number,
+  downloads : number
 }

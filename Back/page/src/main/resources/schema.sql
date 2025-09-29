@@ -10,7 +10,8 @@ CREATE TABLE GAME(
    description varchar(1500),
    portrait varchar(50),
    pageViews int,
-   visits int
+   visits int,
+   downloads int
 );
 CREATE TABLE SCORE(
    id int auto_increment PRIMARY KEY,
