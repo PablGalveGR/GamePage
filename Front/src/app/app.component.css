@@ -8,6 +8,7 @@ nav.desktop {
   width: 100%;
   position: sticky;
   top: 0;
+  border-bottom: 0.015rem solid var(--contrastColor);
 }
 
 nav.desktop h1.title {

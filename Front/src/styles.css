@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --navColor: rgb(240, 240, 240);
+  --navColor: rgb(255, 255, 255);
   --backgroundColor: rgb(255, 255, 255);
   --mainColor: rgb(240, 240, 240);
-  --secondaryColor: rgb(255, 112, 45);
+  --secondaryColor: rgb(255, 91, 13);
   --tertiaryColor:rgb(255, 147, 70);
   --hightLightColor: rgb(255, 0, 0);
   --contrastColor: rgb(0, 0, 0);
