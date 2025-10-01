@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
+import gamepage.page.Hash.*;
 
 
 @CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
@@ -64,11 +65,13 @@ public class UserController {// Never return the password to the Client
   // Create
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void createUser(@Valid @RequestBody User user) {
+  void createUser(@Valid @RequestBody User user) throws Exception {
+    Hash newHash = new Hash();
+    user.setPasswd(newHash.getHash(user.getPasswd()));
     userRepository.createUser(user);
   }
-
-  // Update
+  //Update and delete are not properlys secured yet
+  /*// Update
   @ResponseStatus(HttpStatus.ACCEPTED)
   @PutMapping("update/{id}")
   void updateUser(@Valid @RequestBody User user, @PathVariable int id) {
@@ -81,5 +84,5 @@ public class UserController {// Never return the password to the Client
   @DeleteMapping("delete/{id}")
   void deleteUser(@Valid @PathVariable int id) {
     userRepository.deleteUser(id);
-  }
+  }*/
 }

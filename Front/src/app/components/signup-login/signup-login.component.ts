@@ -32,14 +32,14 @@ export class SignupLoginComponent {
   };
   showFormLog() {
     this.loginForm = !this.loginForm;
-    if(this.loginForm){
+    if (this.loginForm) {
       this.signUpForm = false;
     }
     this.request.passwd = "";
   }
   showFormSign() {
     this.signUpForm = !this.signUpForm;
-    if(this.signUpForm){
+    if (this.signUpForm) {
       this.loginForm = false;
     }
     this.request.passwd = "";
@@ -50,7 +50,7 @@ export class SignupLoginComponent {
   createUser(): string {
     let error: string = "";
     if (this.checkForms(this.user)) {
-      this.signUpService.createUser(this.user)
+      this.signUpService.createUser(this.user);
       console.log("User sent " + this.user.name + '|' + this.user.passwd);
       this.user.name = "";
       this.user.passwd = "";
@@ -63,20 +63,23 @@ export class SignupLoginComponent {
 
   }
   login() {
-    this.loginService.login(this.request).subscribe(response => {
-      if (response) {
-        console.log(response.token);
-        if (response.user && response.user.name == this.request.name) {
-          //Save the session into the client server
-          sessionStorage.setItem(response.user.name, response.token);
-          console.log("Session initialized :" + response.user.name);
-          this.logged = true;
+    if (this.request.name.length > 0 && this.request.passwd.length > 0) {
+      this.loginService.login(this.request).subscribe(response => {
+        if (response) {
+          console.log(response.token);
+          if (response.user && response.user.name == this.request.name) {
+            //Save the session into the client server
+            sessionStorage.setItem(response.user.name, response.token);
+            console.log("Session initialized :" + response.user.name);
+            this.logged = true;
+          }
         }
-      }
-      else {
-        console.log("No response");
-      }
-    });
+        else {
+          console.log("No response");
+        }
+      });
+    }
+
     console.log("User " + this.request.name + '|' + this.request.passwd);
     this.showFormLog();
   }
