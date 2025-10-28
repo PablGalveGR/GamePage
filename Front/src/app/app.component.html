@@ -1,49 +1,18 @@
-<nav class="desktop"><!--*ngIf= desktop-->
+<nav class="desktop" *ngIf=desktop>
   <h1 class="title" (click)="goTo('')">{{title}}</h1>
   <ul>
     <li (click)="goTo('')">Browse Games</li>
     <li>Community</li>
-    <app-signup-login/>
-    <!--
-    <li id="signUp" (click)="showFormSign()">Sign up</li>
-    <li *ngIf="signUpForm">
-          <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="name" [(ngModel)]=user.name required>
-            <label for="passwd">Password</label>
-            <input type="password" id="passwd" name="passwd" [(ngModel)]=user.passwd required>
-            <button type="submit" (click) ="createUser()">Create</button>
-          </form>
-        </li>
-    <li id="login" (click)="showFormLog()" *ngIf="!logged">Login</li>
-    <li *ngIf="loginForm">
-      <form>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="name" [(ngModel)]=request.name required>
-        <label for="passwd">Password</label>
-        <input type="password" id="passwd" name="passwd" [(ngModel)]=request.passwd required>
-        <button type="submit" (click) = "login()">Login</button>
-      </form>
-    </li>
-    <li *ngIf="logged">
-      {{request.name}}
-      <ul>
-        <li (click) = "logout()">Logout</li>
-      </ul>
-    </li>
-    -->
-
-
+    <app-signup-login />
   </ul>
 </nav>
-<!--
-<nav class="mobile" *ngIf = "!desktop">
+<nav class="mobile" *ngIf="!desktop">
   <div class="sideMenu">
     <i class="fa-solid fa-bars button" (click)="showHide()"></i>
     <ul class="left" *ngIf="!hide">
-      <li (click)="goTo('')">Home</li>
-      <li (click)="goTo('/recipes')">Recipes</li>
-      <li (click)="goTo('/ingredients')">Ingredients</li>
+      <li (click)="goTo('')">Browse Games</li>
+      <li>Community</li>
+      <app-signup-login />
     </ul>
   </div>
   <h1 class="title">{{title}}</h1>
@@ -56,6 +25,5 @@
   </div>
 
 </nav>
--->
 
 <router-outlet></router-outlet>

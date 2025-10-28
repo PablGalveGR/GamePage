@@ -14,13 +14,37 @@ import { SignupLoginComponent } from './components/signup-login/signup-login.com
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  hide: boolean = true;
+  hideUserMenu: boolean = true;
   constructor(private router: Router,
     private loginService: LoginService
   ) { }
+  getScreenWidth: number = 0;
+  getScreenHeight: number = 0;
   title = 'GeekyVerse';
   logged: boolean = false;
   signUpForm: boolean = false;
   loginForm: boolean = false;
+  desktop: boolean = true;
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() { this.resize() }
+  showHide() {
+    this.hide = !this.hide;
+    this.hideUserMenu = true;
+  }
+  showHideUserMenu() {
+    this.hideUserMenu = !this.hideUserMenu;
+    this.hide = true;
+  }
+  resize() {
+    this.getScreenWidth = window.innerWidth;
+    if (this.getScreenWidth <= 1020) {
+      this.desktop = false;
+    }
+    else {
+      this.desktop = true;
+    }
+  }
   request: User = {
     name: '',
     passwd: '',
@@ -33,6 +57,8 @@ export class AppComponent {
   };
   ngOnInit() {
     this.logout();
+    this.getScreenWidth = window.innerWidth;
+    this.resize();
   }
   ngOnDestroy() {
     this.logout();
