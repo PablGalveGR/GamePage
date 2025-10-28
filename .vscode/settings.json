@@ -3,5 +3,6 @@
   "java.compile.nullAnalysis.mode": "disabled",
   "cSpell.words": [
     "gamepage"
-  ]
+  ],
+  "maven.view": "hierarchical"
 }
