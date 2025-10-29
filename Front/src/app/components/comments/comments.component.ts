@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { GameService } from '../../services/game/game.service';
 import { Game } from '../game/Game';
-import { Score } from '../score/Score';
 import { User } from '../user/User';
 import { Comment } from './Comment';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';

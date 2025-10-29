@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { GameService } from '../services/game/game.service';
 import { Game } from '../components/game/Game';
 import { NgFor, NgIf } from '@angular/common';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  getScreenWidth: number = 0;
+  desktop: boolean = true;
   constructor(private gameService: GameService, private router: Router) {
 
   }
@@ -19,6 +21,19 @@ export class DashboardComponent {
   AllGames: Game[] = new Array<Game>;
   ngOnInit() {
     this.getGames();
+    this.getScreenWidth = window.innerWidth;
+    this.resize();
+  }
+  @HostListener('window:resize', ['$event'])
+    onWindowResize() { this.resize() }
+  resize() {
+    this.getScreenWidth = window.innerWidth;
+    if (this.getScreenWidth <= 1020) {
+      this.desktop = false;
+    }
+    else {
+      this.desktop = true;
+    }
   }
   getGames() {
     this.gameService.getGames().subscribe(games => { this.games = games; this.AllGames = games });

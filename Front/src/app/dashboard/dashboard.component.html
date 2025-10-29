@@ -5,8 +5,8 @@
   </section>
   <div class="searchBar">
     <input class="bar" type="text" (keyup.enter)="filterBy(filter.value)" #filter>
-    <i class="fas fa-search button" (click)="filterBy(filter.value)">Search</i>
-    <i class="fas fa-eraser button" (click)="clearFilter(filter)">Clear filter</i>
+    <i class="fas fa-search button" (click)="filterBy(filter.value)"></i>
+    <i class="fas fa-eraser button" (click)="clearFilter(filter)"></i>
   </div>
   <div class="boxView"> <!--*ngIf="boxView"-->
     <section class="nogames" *ngIf="games.length == 0">
@@ -18,7 +18,7 @@
         <img src="{{game.portrait}}">
         <h2 class="gameName">{{game.name}}</h2>
       </section>
-      <section class="boxBody">
+      <section class="boxBody" *ngIf="desktop">
         <p>{{game.description}}</p>
       </section>
     </div>

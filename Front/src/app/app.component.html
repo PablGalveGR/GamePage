@@ -12,15 +12,14 @@
     <ul class="left" *ngIf="!hide">
       <li (click)="goTo('')">Browse Games</li>
       <li>Community</li>
-      <app-signup-login />
+      
     </ul>
   </div>
-  <h1 class="title">{{title}}</h1>
+  <h1 class="title" (click)="goTo('')">{{title}}</h1>
   <div class="sideMenuRight">
     <i class="fa-solid fa-user button" (click)="showHideUserMenu()"></i>
     <ul class="right" *ngIf="!hideUserMenu">
-      <li>Sing Up</li>
-      <li>Login</li>
+      <li><app-signup-login /></li>
     </ul>
   </div>
 

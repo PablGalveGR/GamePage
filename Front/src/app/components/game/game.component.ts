@@ -21,14 +21,11 @@ import { ScoreComponent } from '../score/score.component';
 export class GameComponent {
   constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
   game?: Game;
-  scores: Observable<Score[]> = new Observable;
-  comments: Observable<Comment[]> = new Observable;
   users: Set<User> = new Set();
   private id: number = Number(this.route.snapshot.paramMap.get('id'));
   commentsGUI: boolean = false;
   ngOnInit() {
     this.getGame();
-    //this.getScores();
     console.log("game component running");
   }
   getGame(): void {
