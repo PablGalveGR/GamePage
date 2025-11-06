@@ -11,11 +11,13 @@ div.gameHeader,
 div.gameBody {
   display: flex;
 }
+
 /*Game*/
-div.game{
+div.game {
   background-color: var(--mainColor);
   margin: 0 20%;
 }
+
 /*Header*/
 div.gameHeader {
   display: flex;
@@ -74,4 +76,10 @@ div.scoreBoardContainer {
   margin: 0rem;
   margin-left: 3rem;
   padding: 0rem 1rem;
+}
+
+@media only screen and (max-width: 1020px) {
+  div.game {
+  margin: 0 8%;
+}
 }
